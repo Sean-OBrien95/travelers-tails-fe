@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import { Form, Alert, Button, Container } from "react-bootstrap";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-import { SetCurrentUserContext } from "../../App";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 
 function SignInForm({ setShowSignUpImage }) {
@@ -13,7 +13,7 @@ function SignInForm({ setShowSignUpImage }) {
         setShowSignUpImage('block')
         return () => setShowSignUpImage('none');
       }, [setShowSignUpImage])
-    const setCurrentUser = useContext(SetCurrentUserContext);
+    const setCurrentUser = useSetCurrentUser();
     const [signInData, setSignInData] = useState({
     username: "",
     password: "",
