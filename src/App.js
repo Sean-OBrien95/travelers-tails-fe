@@ -6,6 +6,7 @@ import { Route, Switch } from "react-router-dom";
 import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import signUpImage from "./assets/signupimage.jpg";
+import SignInForm from "./pages/auth/SignInForm";
 
 function App() {
   const [showSignUpImage, setShowSignUpImage] = useState('none');
@@ -20,7 +21,7 @@ function App() {
       <Container className={styles.Main}>
         <Switch>
           <Route exact path="/" render={() => <h1>Home page</h1>} />
-          <Route exact path="/signin" render={() => <h1>Login</h1>} />
+          <Route exact path="/signin" render={() => <SignInForm setShowSignUpImage={setShowSignUpImage} />} />
           <Route exact path="/signup" render={() => <SignUpForm setShowSignUpImage={setShowSignUpImage} />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
