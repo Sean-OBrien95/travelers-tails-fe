@@ -10,6 +10,7 @@ import {
   Alert,
 } from "react-bootstrap";
 import axios from "axios";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const SignUpForm = ({ setShowSignUpImage }) => {
 
@@ -18,6 +19,7 @@ const SignUpForm = ({ setShowSignUpImage }) => {
     return () => setShowSignUpImage('none');
   }, [setShowSignUpImage])
 
+  useRedirect("loggedIn");
   const [signUpData, setSignUpData] = useState({
     username: "",
     password1: "",
