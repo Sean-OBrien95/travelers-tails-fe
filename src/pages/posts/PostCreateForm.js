@@ -19,6 +19,7 @@ import btnStyles from "../../styles/Button.module.css";
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
+import CountryDropdown from "../../components/CountryDropdown";
 
 
 function PostCreateForm() {
@@ -38,9 +39,10 @@ function PostCreateForm() {
   const history = useHistory();
 
   const handleChange = (event) => {
+    const { name, value } = event.target;
     setPostData({
       ...postData,
-      [event.target.name]: event.target.value,
+      [name]: value,
     });
   };
 
@@ -92,11 +94,8 @@ function PostCreateForm() {
       ))}
       <Form.Group>
         <Form.Label>Location</Form.Label>
-        <Form.Control
-          type="text"
-          name="location"
-          value={location}
-          onChange={handleChange}
+        <CountryDropdown
+          onSelectCountry={(country) => setPostData({ ...postData, location: country })}
         />
       </Form.Group>
       {errors?.title?.map((message, idx) => (

@@ -14,6 +14,7 @@ import btnStyles from "../../styles/Button.module.css";
 
 import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
+import CountryDropdown from "../../components/CountryDropdown";
 
 function PostEditForm() {
   const [errors, setErrors] = useState({});
@@ -102,13 +103,10 @@ function PostEditForm() {
         </Alert>
       ))}
 
-        <Form.Group>
+      <Form.Group>
         <Form.Label>Location</Form.Label>
-        <Form.Control
-          type="text"
-          name="location"
-          value={title}
-          onChange={handleChange}
+        <CountryDropdown
+          onSelectCountry={(country) => setPostData({ ...postData, location: country })}
         />
       </Form.Group>
       {errors?.title?.map((message, idx) => (
