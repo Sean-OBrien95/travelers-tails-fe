@@ -30,7 +30,7 @@ const NavBar = () => {
       activeClassName={styles.Active}
       to="/posts/create"
     >
-      <i className="far fa-plus-square"></i>Add post
+      <i class="fa-solid fa-plus"></i>Create
     </NavLink>
   );
 
@@ -41,7 +41,7 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/feed"
       >
-        <i className="fas fa-stream"></i>Feed
+        <i class="fa-regular fa-newspaper"></i>Feed
       </NavLink>
       <NavLink
         className={styles.NavLink}
@@ -62,16 +62,16 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/liked"
       >
-        <i className="fas fa-heart"></i>Liked
+        <i class="fa-solid fa-heart"></i>Liked
       </NavLink>
       <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
-        <i className="fas fa-sign-out-alt"></i>Sign out
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>Logout
       </NavLink>
       <NavLink
         className={styles.NavLink}
         to={`/profiles/${currentUser?.profile_id}`}
       >
-        <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
+        <Avatar src={currentUser?.profile_image} height={40} />
       </NavLink>
     </>
 
@@ -89,7 +89,7 @@ const NavBar = () => {
               className={styles.NavLink}
               activeClassName={styles.Active1}
             >
-              <i className="fas fa-user-plus"></i>Create Account
+              <i class="fa-solid fa-address-card"></i>Create Account
             </NavLink>
     </>
   );
