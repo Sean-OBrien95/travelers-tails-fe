@@ -87,9 +87,9 @@ function PostCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
-      {errors?.title?.map((message, idx) => (
+      {errors?.title?.map((idx) => (
         <Alert variant="warning" key={idx}>
-          {message}
+          Title is required
         </Alert>
       ))}
       <Form.Group>
@@ -98,9 +98,9 @@ function PostCreateForm() {
           onSelectCountry={(country) => setPostData({ ...postData, location: country })}
         />
       </Form.Group>
-      {errors?.title?.map((message, idx) => (
+      {errors?.location?.map((idx) => (
         <Alert variant="warning" key={idx}>
-          {message}
+          Location is required
         </Alert>
       ))}
       <Form.Group>
@@ -113,9 +113,9 @@ function PostCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
-      {errors?.title?.map((message, idx) => (
+      {errors?.content?.map((idx) => (
         <Alert variant="warning" key={idx}>
-          {message}
+          Content is required
         </Alert>
       ))}
 
@@ -172,9 +172,9 @@ function PostCreateForm() {
                 ref={imageInput}
               />
             </Form.Group>
-            {errors?.title?.map((message, idx) => (
+            {errors?.image?.map((idx) => (
             <Alert variant="warning" key={idx}>
-            {message}
+              Media is required
             </Alert>
             ))}
             <div className="d-md-none">{textFields}</div>

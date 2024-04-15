@@ -97,9 +97,9 @@ function PostEditForm() {
           onChange={handleChange}
         />
       </Form.Group>
-      {errors?.title?.map((message, idx) => (
+      {errors?.title?.map((idx) => (
         <Alert variant="warning" key={idx}>
-          {message}
+          Title is required
         </Alert>
       ))}
 
@@ -107,11 +107,12 @@ function PostEditForm() {
         <Form.Label>Location</Form.Label>
         <CountryDropdown
           onSelectCountry={(country) => setPostData({ ...postData, location: country })}
+          defaultValue={location}
         />
       </Form.Group>
-      {errors?.title?.map((message, idx) => (
+      {errors?.location?.map((idx) => (
         <Alert variant="warning" key={idx}>
-          {message}
+          Location is required
         </Alert>
       ))}
 
@@ -125,9 +126,9 @@ function PostEditForm() {
           onChange={handleChange}
         />
       </Form.Group>
-      {errors?.content?.map((message, idx) => (
+      {errors?.content?.map((idx) => (
         <Alert variant="warning" key={idx}>
-          {message}
+          Content is required
         </Alert>
       ))}
 
@@ -170,9 +171,9 @@ function PostEditForm() {
                 ref={imageInput}
               />
             </Form.Group>
-            {errors?.image?.map((message, idx) => (
+            {errors?.image?.map((idx) => (
               <Alert variant="warning" key={idx}>
-                {message}
+                Image is required
               </Alert>
             ))}
 
