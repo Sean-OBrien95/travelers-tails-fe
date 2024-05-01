@@ -20,6 +20,7 @@ const Post = (props) => {
     location,
     content,
     image,
+    video,
     updated_at,
     postPage,
     setPosts,
@@ -96,9 +97,29 @@ const Post = (props) => {
           </div>
         </Media>
       </Card.Body>
-      <Link to={`/posts/${id}`}>
-        <Card.Img src={image} alt={title} />
-      </Link>
+      {/* <div>
+        {image.includes('default_post_rgq6aq') ? (
+          <video width="750" height="500" controls>
+            <source src={video} />
+          </video>
+        ) : (
+          <Link to={`/posts/${id}`}>
+            <Card.Img src={image} alt={title} />
+          </Link>
+        )}
+      </div> */}
+       <div>
+      {/* Check if image is defined before accessing includes method */}
+      {image && image.includes && image.includes('default_post_rgq6aq') ? (
+        <video width="750" height="500" controls>
+          <source src={video} />
+        </video>
+      ) : (
+        <Link to={`/posts/${id}`}>
+          <Card.Img src={image} alt={title} />
+        </Link>
+      )}
+    </div>
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {content && <Card.Text>{content}</Card.Text>}

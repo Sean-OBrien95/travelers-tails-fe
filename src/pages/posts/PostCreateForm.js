@@ -6,7 +6,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
-import Image from "react-bootstrap/Image";
 
 import Asset from "../../components/Asset";
 
@@ -24,6 +23,8 @@ import CountryDropdown from "../../components/CountryDropdown";
 
 function PostCreateForm() {
   useRedirect("loggedOut");
+
+  const [fileType, setFileType] = useState('none');
   
   const [errors, setErrors] = useState({});
 
@@ -31,11 +32,12 @@ function PostCreateForm() {
     title: "",
     location: "",
     content: "",
-    image: "",
+    media: ""
   });
-  const { title, content, location, image } = postData;
 
-  const imageInput = useRef(null);
+  const { title, content, location, media } = postData;
+
+  const mediaInput = useRef(null);
   const history = useHistory();
 
   const handleChange = (event) => {
@@ -49,12 +51,46 @@ function PostCreateForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-
+  
+    // Initialize an empty object to store errors for each field
+    const fieldErrors = {};
+  
+    // Validate title field
+    if (!title.trim()) {
+      fieldErrors.title = ["Title is required"];
+    }
+  
+    // Validate location field
+    if (!location.trim()) {
+      fieldErrors.location = ["Location is required"];
+    }
+  
+    // Validate content field
+    if (!content.trim()) {
+      fieldErrors.content = ["Content is required"];
+    }
+  
+    // Validate media field
+    if (!media) {
+      fieldErrors.media = ["Media is required"];
+    }
+  
+    // If there are any errors, set the state and return to prevent form submission
+    if (Object.keys(fieldErrors).length > 0) {
+      setErrors(fieldErrors);
+      return;
+    }
+  
+    // If all fields are valid, append them to the formData
     formData.append("title", title);
     formData.append("location", location);
     formData.append("content", content);
-    formData.append("image", imageInput.current.files[0]);
-
+    if (fileType === 'image') {
+      formData.append("image", mediaInput.current.files[0]);
+    } else if (fileType === 'video') {
+      formData.append("video", mediaInput.current.files[0]);
+    }
+  
     try {
       const { data } = await axiosReq.post("/posts/", formData);
       history.push(`/posts/${data.id}`);
@@ -66,126 +102,132 @@ function PostCreateForm() {
     }
   };
 
-  const handleChangeImage = (event) => {
+  const handleChangeMedia = (event) => {
     if (event.target.files.length) {
-      URL.revokeObjectURL(image);
+      const media = event.target.files[0];
+      const fileType = media.type.startsWith('image') ? 'image' : 'video';
+      setFileType(fileType);
       setPostData({
         ...postData,
-        image: URL.createObjectURL(event.target.files[0]),
+        media: media,
       });
     }
   };
 
-  const textFields = (
-    <div className="text-center">
-      <Form.Group>
-        <Form.Label>Title</Form.Label>
-        <Form.Control
-          type="text"
-          name="title"
-          value={title}
-          onChange={handleChange}
-        />
-      </Form.Group>
-      {errors?.title?.map((idx) => (
-        <Alert variant="warning" key={idx}>
-          Title is required
-        </Alert>
-      ))}
-      <Form.Group>
-        <Form.Label>Location</Form.Label>
-        <CountryDropdown
-          onSelectCountry={(country) => setPostData({ ...postData, location: country })}
-        />
-      </Form.Group>
-      {errors?.location?.map((idx) => (
-        <Alert variant="warning" key={idx}>
-          Location is required
-        </Alert>
-      ))}
-      <Form.Group>
-        <Form.Label>Content</Form.Label>
-        <Form.Control
-          as="textarea"
-          rows={6}
-          name="content"
-          value={content}
-          onChange={handleChange}
-        />
-      </Form.Group>
-      {errors?.content?.map((idx) => (
-        <Alert variant="warning" key={idx}>
-          Content is required
-        </Alert>
-      ))}
-
-      <Button
-        className={`${btnStyles.Button} ${btnStyles.Bright}`}
-        onClick={() => history.goBack()}
-      >
-        cancel
-      </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Bright}`} type="submit">
-        create
-      </Button>
-    </div>
-  );
-
-  return (
-    <Form onSubmit={handleSubmit}>
-      <Row>
-        <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-          <Container
-            className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
-          >
-            <Form.Group className="text-center">
-              {image ? (
+return (
+  <Form onSubmit={handleSubmit}>
+    <Row>
+      <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
+        <Container
+          className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
+        >
+          <Form.Group className="text-center">
+            <Form.Label
+              className="d-flex flex-column align-items-center"
+              htmlFor="media-upload"
+            >
+              {media && fileType === 'image' ? (
                 <>
-                  <figure>
-                    <Image className={appStyles.Image} src={image} rounded />
-                  </figure>
-                  <div>
-                    <Form.Label
-                      className={`${btnStyles.Button}`}
-                      htmlFor="image-upload"
-                    >
-                      Change the image
-                    </Form.Label>
-                  </div>
+                  <img
+                    src={URL.createObjectURL(media)}
+                    alt="Preview"
+                    style={{ maxWidth: "100%", maxHeight: "300px" }}
+                  />
+                  <span>Click to change image</span>
+                </>
+              ) : media && fileType === 'video' ? (
+                <>
+                  <video
+                    src={URL.createObjectURL(media)}
+                    controls
+                    style={{ maxWidth: "100%", maxHeight: "300px" }}
+                  />
+                  <span>Click to change video</span>
                 </>
               ) : (
-                <Form.Label
-                  className="d-flex justify-content-center"
-                  htmlFor="image-upload"
-                >
-                  <Asset
-                    src={Upload}
-                    message="Click or tap to upload an image"
-                  />
-                </Form.Label>
+                <Asset
+                  src={Upload}
+                  message="Click or tap to upload an image or video"
+                />
               )}
-
-              <Form.File
-                id="image-upload"
-                accept="image/*"
-                onChange={handleChangeImage}
-                ref={imageInput}
-              />
-            </Form.Group>
-            {errors?.image?.map((idx) => (
+            </Form.Label>
+            <Form.File
+              id="media-upload"
+              accept="image/*,video/*"
+              onChange={handleChangeMedia}
+              ref={mediaInput}
+            />
+          </Form.Group>
+          {errors?.media?.map((idx) => (
             <Alert variant="warning" key={idx}>
               Media is required
             </Alert>
+          ))}
+        </Container>
+      </Col>
+      <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
+        <Container className={appStyles.Content}>
+          <div className="text-center">
+            <Form.Group>
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                type="text"
+                name="title"
+                value={title}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            {errors?.title?.map((idx) => (
+              <Alert variant="warning" key={idx}>
+                Title is required
+              </Alert>
             ))}
-            <div className="d-md-none">{textFields}</div>
-          </Container>
-        </Col>
-        <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
-          <Container className={appStyles.Content}>{textFields}</Container>
-        </Col>
-      </Row>
-    </Form>
-  );
+            <Form.Group>
+              <Form.Label>Location</Form.Label>
+              <CountryDropdown
+                onSelectCountry={(country) =>
+                  setPostData({ ...postData, location: country })
+                }
+              />
+            </Form.Group>
+            {errors?.location?.map((idx) => (
+              <Alert variant="warning" key={idx}>
+                Location is required
+              </Alert>
+            ))}
+            <Form.Group>
+              <Form.Label>Content</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={6}
+                name="content"
+                value={content}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            {errors?.content?.map((idx) => (
+              <Alert variant="warning" key={idx}>
+                Content is required
+              </Alert>
+            ))}
+            <Button
+              className={`${btnStyles.Button} ${btnStyles.Bright}`}
+              onClick={() => history.goBack()}
+            >
+              cancel
+            </Button>
+            <Button
+              className={`${btnStyles.Button} ${btnStyles.Bright}`}
+              type="submit"
+            >
+              create
+            </Button>
+          </div>
+        </Container>
+      </Col>
+    </Row>
+  </Form>
+);
 }
 
 export default PostCreateForm;
