@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -7,27 +6,26 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
-
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-
 import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import CountryDropdown from "../../components/CountryDropdown";
 
 function PostEditForm() {
   const [errors, setErrors] = useState({});
-
   const [postData, setPostData] = useState({
     title: "",
     location: "",
     content: "",
-    image: "",
+    media: "",
+    mediaType: "",
+    initialMediaType: "",
   });
-  const { title, location, content, image } = postData;
-
-  const imageInput = useRef(null);
+  const [initialMediaType, setInitialMediaType] = useState("");
+  const { title, location, content, media, mediaType } = postData;
+  const mediaInput = useRef(null);
   const history = useHistory();
   const { id } = useParams();
 
@@ -35,30 +33,61 @@ function PostEditForm() {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/posts/${id}/`);
-        const { title, location, content, image, is_owner } = data;
+        const { title, location, content, image, video, is_owner } = data;
+  
+        let initialMediaType = "";
 
-        is_owner ? setPostData({ title, location, content, image }) : history.push("/");
+        if (video !== null) {
+          initialMediaType = "video";
+        } else {
+          initialMediaType = "image";
+        }
+
+        setInitialMediaType(initialMediaType);
+  
+        console.log("Initial media type:", initialMediaType);
+        const source = initialMediaType === 'video' ? video : image;
+
+        setInitialMediaType(initialMediaType);
+  
+        is_owner
+          ? setPostData({
+              title,
+              location,
+              content,
+              media: source,
+              mediaType: initialMediaType,
+            })
+          : history.push("/");
       } catch (err) {
         console.log(err);
       }
     };
-
+  
     handleMount();
   }, [history, id]);
 
   const handleChange = (event) => {
-    setPostData({
-      ...postData,
+    setPostData((prevData) => ({
+      ...prevData,
       [event.target.name]: event.target.value,
-    });
+    }));
   };
 
-  const handleChangeImage = (event) => {
+  const handleChangeMedia = (event) => {
+    setErrors({ ...errors, media: [] });
+  
     if (event.target.files.length) {
-      URL.revokeObjectURL(image);
+      const media = event.target.files[0];
+      const fileType = media.type.startsWith("image") ? "image" : "video";
+      console.log("fileType:", fileType);
+  
+      setInitialMediaType(fileType);
+  
       setPostData({
         ...postData,
-        image: URL.createObjectURL(event.target.files[0]),
+        media: URL.createObjectURL(media),
+        mediaType: fileType,
       });
     }
   };
@@ -66,15 +95,17 @@ function PostEditForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-
+  
     formData.append("title", title);
     formData.append("location", location);
     formData.append("content", content);
-
-    if (imageInput?.current?.files[0]) {
-      formData.append("image", imageInput.current.files[0]);
+  
+    if (mediaInput?.current?.files[0]) {
+      formData.append(mediaType === "image" ? "image" : "video", mediaInput.current.files[0]);
+    } else {
+      formData.append(mediaType === "image" ? "image" : "video", postData.media);
     }
-
+  
     try {
       await axiosReq.put(`/posts/${id}/`, formData);
       history.push(`/posts/${id}`);
@@ -106,7 +137,9 @@ function PostEditForm() {
       <Form.Group>
         <Form.Label>Location</Form.Label>
         <CountryDropdown
-          onSelectCountry={(country) => setPostData({ ...postData, location: country })}
+          onSelectCountry={(country) =>
+            setPostData({ ...postData, location: country })
+          }
           defaultValue={location}
         />
       </Form.Group>
@@ -136,10 +169,13 @@ function PostEditForm() {
         className={`${btnStyles.Button} ${btnStyles.Bright}`}
         onClick={() => history.goBack()}
       >
-        cancel
+        Cancel
       </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Bright}`} type="submit">
-        save
+      <Button
+        className={`${btnStyles.Button} ${btnStyles.Bright}`}
+        type="submit"
+      >
+        Save
       </Button>
     </div>
   );
@@ -152,31 +188,35 @@ function PostEditForm() {
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
             <Form.Group className="text-center">
-              <figure>
-                <Image className={appStyles.Image} src={image} rounded />
-              </figure>
+              <div>
+                {initialMediaType === "video" ? (
+                  <video width="750" height="500" key="video-key" controls>
+                    <source src={media} />
+                  </video>
+                ) : (
+                  <Image className={appStyles.Image} src={media} />
+                )}
+              </div>
               <div>
                 <Form.Label
                   className={`${btnStyles.Button} ${btnStyles.Bright} btn`}
-                  htmlFor="image-upload"
+                  htmlFor="media-upload"
                 >
-                  Change the image
+                  Change Media
                 </Form.Label>
               </div>
-
               <Form.File
-                id="image-upload"
-                accept="image/*"
-                onChange={handleChangeImage}
-                ref={imageInput}
+                id="media-upload"
+                accept="image/*,video/*"
+                onChange={handleChangeMedia}
+                ref={mediaInput}
               />
             </Form.Group>
-            {errors?.image?.map((idx) => (
+            {errors?.media?.map((idx) => (
               <Alert variant="warning" key={idx}>
-                Image is required
+                {mediaType === "image" ? "Image" : "Video"} is required
               </Alert>
             ))}
-
             <div className="d-md-none">{textFields}</div>
           </Container>
         </Col>

@@ -75,87 +75,76 @@ const Post = (props) => {
     }
   };
 
-  return (
-    <Card className={styles.Post}>
-      <Card.Body>
-        <Media className="align-items-center justify-content-between">
-          <Link to={`/profiles/${profile_id}`}>
-            <Avatar src={profile_image} height={55} />
-            {owner}
-          </Link>
-          <span>
-            {location}
-          </span>
-          <div className="d-flex align-items-center">
-            <span>{updated_at}</span>
-            {is_owner && postPage && (
-              <MoreDropdown
-                handleEdit={handleEdit}
-                handleDelete={handleDelete}
-              />
-            )}
-          </div>
-        </Media>
-      </Card.Body>
-      {/* <div>
-        {image.includes('default_post_rgq6aq') ? (
-          <video width="750" height="500" controls>
-            <source src={video} />
-          </video>
-        ) : (
-          <Link to={`/posts/${id}`}>
-            <Card.Img src={image} alt={title} />
-          </Link>
-        )}
-      </div> */}
-       <div>
-      {/* Check if image is defined before accessing includes method */}
-      {image && image.includes && image.includes('default_post_rgq6aq') ? (
+return (
+  <Card className={styles.Post}>
+    <Card.Body>
+      <Media className="align-items-center justify-content-between">
+        <Link to={`/profiles/${profile_id}`}>
+          <Avatar src={profile_image} height={55} />
+          {owner}
+        </Link>
+        <span>{location}</span>
+        <div className="d-flex align-items-center">
+          <span>{updated_at}</span>
+          {is_owner && postPage && (
+            <MoreDropdown
+              handleEdit={handleEdit}
+              handleDelete={handleDelete}
+            />
+          )}
+        </div>
+      </Media>
+    </Card.Body>
+    <div>
+      {video ? (
         <video width="750" height="500" controls>
           <source src={video} />
         </video>
       ) : (
         <Link to={`/posts/${id}`}>
-          <Card.Img src={image} alt={title} />
+          {image ? (
+            <Card.Img src={image} alt={title} />
+          ) : (
+            <Card.Img src="path/to/default/image.jpg" alt="Default Image" />
+          )}
         </Link>
       )}
     </div>
-      <Card.Body>
-        {title && <Card.Title className="text-center">{title}</Card.Title>}
-        {content && <Card.Text>{content}</Card.Text>}
-        <div className={styles.PostBar}>
-          {is_owner ? (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>You can't like your own post!</Tooltip>}
-            >
-              <i className="far fa-heart" />
-            </OverlayTrigger>
-          ) : like_id ? (
-            <span onClick={handleUnlike}>
-              <i className={`fas fa-heart ${styles.Heart}`} />
-            </span>
-          ) : currentUser ? (
-            <span onClick={handleLike}>
-              <i className={`far fa-heart ${styles.HeartOutline}`} />
-            </span>
-          ) : (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>Log in to like posts!</Tooltip>}
-            >
-              <i className="far fa-heart" />
-            </OverlayTrigger>
-          )}
-          {likes_count}
-          <Link to={`/posts/${id}`}>
-            <i className="far fa-comments" />
-          </Link>
-          {comments_count}
-        </div>
-      </Card.Body>
-    </Card>
-  );
-};
+    <Card.Body>
+      {title && <Card.Title className="text-center">{title}</Card.Title>}
+      {content && <Card.Text>{content}</Card.Text>}
+      <div className={styles.PostBar}>
+        {is_owner ? (
+          <OverlayTrigger
+            placement="top"
+            overlay={<Tooltip>You can't like your own post!</Tooltip>}
+          >
+            <i className="far fa-heart" />
+          </OverlayTrigger>
+        ) : like_id ? (
+          <span onClick={handleUnlike}>
+            <i className={`fas fa-heart ${styles.Heart}`} />
+          </span>
+        ) : currentUser ? (
+          <span onClick={handleLike}>
+            <i className={`far fa-heart ${styles.HeartOutline}`} />
+          </span>
+        ) : (
+          <OverlayTrigger
+            placement="top"
+            overlay={<Tooltip>Log in to like posts!</Tooltip>}
+          >
+            <i className="far fa-heart" />
+          </OverlayTrigger>
+        )}
+        {likes_count}
+        <Link to={`/posts/${id}`}>
+          <i className="far fa-comments" />
+        </Link>
+        {comments_count}
+      </div>
+    </Card.Body>
+  </Card>
+);}
 
 export default Post;
