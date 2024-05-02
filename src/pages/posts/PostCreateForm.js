@@ -133,7 +133,15 @@ return (
                     alt="Preview"
                     style={{ maxWidth: "100%", maxHeight: "300px" }}
                   />
-                  <span>Click to change image</span>
+                  <div
+                    style={{ paddingTop: "5px"}}>
+                    <Form.Label
+                      className={`${btnStyles.Button} ${btnStyles.Bright} btn`}
+                      htmlFor="media-upload"
+                    >
+                      Change Media
+                    </Form.Label>
+                  </div>
                 </>
               ) : media && fileType === 'video' ? (
                 <>
@@ -142,7 +150,15 @@ return (
                     controls
                     style={{ maxWidth: "100%", maxHeight: "300px" }}
                   />
-                  <span>Click to change video</span>
+                  <div
+                    style={{ paddingTop: "5px"}}>
+                    <Form.Label
+                      className={`${btnStyles.Button} ${btnStyles.Bright} btn`}
+                      htmlFor="media-upload"
+                    >
+                      Change Media
+                    </Form.Label>
+                  </div>
                 </>
               ) : (
                 <Asset

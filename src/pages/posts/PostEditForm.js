@@ -190,11 +190,15 @@ function PostEditForm() {
             <Form.Group className="text-center">
               <div>
                 {initialMediaType === "video" ? (
-                  <video width="750" height="500" key="video-key" controls>
+                  <video maxWidth="100%" maxHeight="300px" key="video-key" controls
+                    style={{ maxWidth: "100%", maxHeight: "300px" }}>
                     <source src={media} />
                   </video>
                 ) : (
-                  <Image className={appStyles.Image} src={media} />
+                  <Image 
+                    className={appStyles.Image}
+                    style={{ maxWidth: "100%", maxHeight: "300px", paddingBottom: "5px" }}
+                    src={media} />
                 )}
               </div>
               <div>
