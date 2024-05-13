@@ -1,25 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { Container, Row, Col } from 'react-bootstrap';
 import styles from '../../styles/Notification.module.css';
-import Profile from '../profiles/Profile';
-
+import Asset from '../../components/Asset';
+import PopularProfiles from '../profiles/PopularProfiles';
+import appStyles from "../../App.module.css";
+import NoResultsImage from "../../assets/no-results.png";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Avatar from '../../components/Avatar';
 
 const Notification = () => {
   const [notifications, setNotifications] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [hasMore, setHasMore] = useState(true);
+  const [page, setPage] = useState(1);
   const history = useHistory();
 
   const fetchNotifications = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('notifications/');
-      const userNotifications = response.data.results;
-      setNotifications(prevNotifications => [...userNotifications.reverse(), ...prevNotifications]);
+      const response = await axios.get(`notifications/?page=${page}`);
+      const userNotifications = response.data.results.reverse(); 
+      setNotifications([...notifications, ...userNotifications]);
       setLoading(false);
-      console.log(response)
-      console.log(response.data.results)
-      console.log(userNotifications)
+      setPage(page + 1);
+      if (!response.data.next) {
+        setHasMore(false);
+      }
     } catch (error) {
       console.error('Error fetching notifications:', error);
       setLoading(false);
@@ -28,6 +36,7 @@ const Notification = () => {
 
   useEffect(() => {
     fetchNotifications();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleClick = async (notification) => {
@@ -38,24 +47,46 @@ const Notification = () => {
     } catch (error) {
       console.error('Error navigating to post:', error);
     }
-    console.log(notification)
   };
 
   return (
-    <div>
-      <h2 className={styles.notificationTitle}>Notifications</h2>
-      <ul className={styles.notificationList}>
-        {notifications.map(notification => (
-          <li key={notification.id} className={styles.notificationItem} onClick={() => handleClick(notification)}>
-            <Profile profile={{ image: notification.profile_image }} mobile />
-            <div className={styles.notificationContent}>
-              <h3>{notification.username} {notification.notification_type} your {notification.post ? 'post' : 'profile'}.</h3>
+    <Container>
+      <Row className="h-100">
+        <Col Col className="py-2 p-0 p-lg-2" lg={8}>
+          <PopularProfiles mobile />
+          <InfiniteScroll
+            dataLength={notifications.length}
+            next={fetchNotifications} 
+            hasMore={hasMore}
+          >
+            <div className={styles.notificationList}>
+              {notifications.map(notification => (
+                <div key={notification.id} className={styles.notificationItem} onClick={() => handleClick(notification)}>
+                  <Avatar src={notification.profile_image} />
+                  <div className={styles.notificationContent}>
+                    <h3>{notification.username} {notification.notification_type} your {notification.post ? 'post' : 'profile'}.</h3>
+                  </div>
+                </div>
+              ))}
             </div>
-          </li>
-        ))}
-      </ul>
-      {loading && <p>Loading...</p>}
-    </div>
+          </InfiniteScroll>
+          {loading && (
+            <div className={`${appStyles.Content} d-flex flex-column justify-content-center align-items-center`}>
+              <Asset spinner />
+            </div>
+          )}
+          {!loading && notifications.length === 0 && (
+            <div className={`${appStyles.Content} d-flex flex-column justify-content-center align-items-center`}>
+              <Asset src={NoResultsImage} />
+              <p>Here is where your notifications will appear.</p>
+            </div>
+          )}
+        </Col>
+        <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
+          <PopularProfiles />
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
