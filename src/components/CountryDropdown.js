@@ -1,4 +1,3 @@
-// import React, { useState } from "react";
 import React, { useState, useEffect } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import FormControl from "react-bootstrap/FormControl";
@@ -33,80 +32,6 @@ const countries = [
   "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
 ];
 
-// const CountryDropdown = ({ onSelectCountry }) => {
-//   const [value, setValue] = useState("");
-
-//   const handleSelect = (country) => {
-//     setValue(country);
-//     onSelectCountry(country);
-//   };
-
-//   return (
-//     <Dropdown>
-//       <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-//         {value || "Select a country"}
-//       </Dropdown.Toggle>
-//       <Dropdown.Menu as={CustomMenu}>
-//         <FormControl
-//           autoFocus
-//           className="mx-3 my-2 w-auto"
-//           placeholder="Type to filter..."
-//           onChange={(e) => setValue(e.target.value)}
-//           value={value}
-//         />
-//         <ul className="list-unstyled">
-//           {countries
-//             .filter((country) =>
-//               country.toLowerCase().startsWith(value.toLowerCase())
-//             )
-//             .map((country, index) => (
-//               <Dropdown.Item key={index} onSelect={() => handleSelect(country)}>
-//                 {country}
-//               </Dropdown.Item>
-//             ))}
-//         </ul>
-//       </Dropdown.Menu>
-//     </Dropdown>
-//   );
-// };
-
-// const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-//   <button
-//     ref={ref}
-//     onClick={(e) => {
-//       e.preventDefault();
-//       onClick(e);
-//     }}
-//     style={{ textDecoration: 'none', color: 'inherit', background: 'none', border: 'none', cursor: 'pointer' }}
-//   >
-//     {children}
-//     &#x25bc;
-//   </button>
-// ));
-
-// const CustomMenu = React.forwardRef(
-//   ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
-//     const [value] = useState("");
-
-//     return (
-//       <div
-//         ref={ref}
-//         style={style}
-//         className={className}
-//         aria-labelledby={labeledBy}
-//       >
-//         <ul className="list-unstyled">
-//           {React.Children.toArray(children).filter(
-//             (child) =>
-//               !value || child.props.children.toLowerCase().startsWith(value)
-//           )}
-//         </ul>
-//       </div>
-//     );
-//   }
-// );
-
-// export default CountryDropdown;
 
 const CountryDropdown = ({ onSelectCountry, defaultValue }) => {
   const [value, setValue] = useState(defaultValue || "");
