@@ -13,7 +13,9 @@ import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import CountryDropdown from "../../components/CountryDropdown";
 
+
 function PostEditForm() {
+  // State variables to manage form data and errors
   const [errors, setErrors] = useState({});
   const [postData, setPostData] = useState({
     title: "",
@@ -29,12 +31,14 @@ function PostEditForm() {
   const history = useHistory();
   const { id } = useParams();
 
+  // useEffect to fetch the post data when the component mounts
   useEffect(() => {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/posts/${id}/`);
         const { title, location, content, image, video, is_owner } = data;
   
+        // Determine the initial media type (image or video)
         let initialMediaType = "";
 
         if (video !== null) {
@@ -45,11 +49,11 @@ function PostEditForm() {
 
         setInitialMediaType(initialMediaType);
   
-        console.log("Initial media type:", initialMediaType);
+        // Set the initial media type and source
         const source = initialMediaType === 'video' ? video : image;
-
         setInitialMediaType(initialMediaType);
   
+        // Check if the user is the owner of the post, otherwise redirect
         is_owner
           ? setPostData({
               title,
@@ -67,6 +71,7 @@ function PostEditForm() {
     handleMount();
   }, [history, id]);
 
+  // Function to handle input changes
   const handleChange = (event) => {
     setPostData((prevData) => ({
       ...prevData,
@@ -74,6 +79,7 @@ function PostEditForm() {
     }));
   };
 
+  // Function to handle changes in media file
   const handleChangeMedia = (event) => {
     setErrors({ ...errors, media: [] });
   
@@ -92,10 +98,12 @@ function PostEditForm() {
     }
   };
 
+  // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-  
+ 
+    // Append form data to FormData object
     formData.append("title", title);
     formData.append("location", location);
     formData.append("content", content);
@@ -117,6 +125,7 @@ function PostEditForm() {
     }
   };
 
+  // JSX for text input fields
   const textFields = (
     <div className="text-center">
       <Form.Group>

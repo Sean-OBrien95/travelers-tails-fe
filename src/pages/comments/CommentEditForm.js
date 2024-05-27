@@ -10,16 +10,21 @@ function CommentEditForm(props) {
 
   const [formContent, setFormContent] = useState(content);
 
+  // Function to handle changes in the textarea
   const handleChange = (event) => {
     setFormContent(event.target.value);
   };
 
+  // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      // Send a put request to update the comment
       await axiosRes.put(`/comments/${id}/`, {
         content: formContent.trim(),
       });
+
+      // Update comments state to reflect the edited comment
       setComments((prevComments) => ({
         ...prevComments,
         results: prevComments.results.map((comment) => {
@@ -32,12 +37,15 @@ function CommentEditForm(props) {
             : comment;
         }),
       }));
+
+      // Hide the edit form after submission
       setShowEditForm(false);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
+  // JSX for rendering the comment edit form
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group className="pr-1">

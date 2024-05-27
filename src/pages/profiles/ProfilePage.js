@@ -26,6 +26,7 @@ import NoResults from "../../assets/no-results.png";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
 
 function ProfilePage() {
+  // State variables
   const [hasLoaded, setHasLoaded] = useState(false);
   const [profilePosts, setProfilePosts] = useState({ results: [] });
 
@@ -35,9 +36,11 @@ function ProfilePage() {
   const { setProfileData, handleFollow, handleUnfollow } = useSetProfileData();
   const { pageProfile } = useProfileData();
 
+  // Destructure profile data from the context
   const [profile] = pageProfile.results;
   const is_owner = currentUser?.username === profile?.owner;
 
+  // Fetch profile data and profile posts on component mount
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -59,6 +62,7 @@ function ProfilePage() {
     fetchData();
   }, [id, setProfileData]);
 
+  // JSX for main profile section
   const mainProfile = (
     <>
       {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
@@ -111,6 +115,7 @@ function ProfilePage() {
     </>
   );
 
+  // JSX for profile posts section
   const mainProfilePosts = (
     <>
       <hr />

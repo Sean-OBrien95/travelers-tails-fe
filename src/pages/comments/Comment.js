@@ -10,6 +10,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
 
 const Comment = (props) => {
+  // Destructure props
   const {
     profile_id,
     profile_image,
@@ -22,12 +23,17 @@ const Comment = (props) => {
   } = props;
 
   const [showEditForm, setShowEditForm] = useState(false);
+
   const currentUser = useCurrentUser();
+
   const is_owner = currentUser?.username === owner;
 
+  // Function to handle comment deletion
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/comments/${id}/`);
+
+      // Update post comments count
       setPost((prevPost) => ({
         results: [
           {
@@ -37,13 +43,17 @@ const Comment = (props) => {
         ],
       }));
 
+      // Update comments state to remove the deleted comment
       setComments((prevComments) => ({
         ...prevComments,
         results: prevComments.results.filter((comment) => comment.id !== id),
       }));
-    } catch (err) {}
+    } catch (err) {
+      console.error(err);
+    }
   };
 
+  // JSX for rendering the comment component
   return (
     <>
       <hr />
@@ -54,6 +64,7 @@ const Comment = (props) => {
         <Media.Body className="align-self-center ml-2">
           <span className={styles.Owner}>{owner}</span>
           <span className={styles.Date}>{updated_at}</span>
+          {/* Conditionally render comment edit form or content */}
           {showEditForm ? (
             <CommentEditForm
               id={id}
@@ -67,6 +78,7 @@ const Comment = (props) => {
             <p>{content}</p>
           )}
         </Media.Body>
+        {/* Render more dropdown if the current user is the owner of the comment */}
         {is_owner && !showEditForm && (
           <MoreDropdown
             handleEdit={() => setShowEditForm(true)}

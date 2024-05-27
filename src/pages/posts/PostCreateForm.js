@@ -24,10 +24,9 @@ import CountryDropdown from "../../components/CountryDropdown";
 function PostCreateForm() {
   useRedirect("loggedOut");
 
+  // State variables for form data, file type, and errors
   const [fileType, setFileType] = useState('none');
-  
   const [errors, setErrors] = useState({});
-
   const [postData, setPostData] = useState({
     title: "",
     location: "",
@@ -37,9 +36,11 @@ function PostCreateForm() {
 
   const { title, content, location, media } = postData;
 
+  // Ref for media input
   const mediaInput = useRef(null);
   const history = useHistory();
 
+  // Function to handle form field changes
   const handleChange = (event) => {
     const { name, value } = event.target;
     setPostData({
@@ -48,6 +49,7 @@ function PostCreateForm() {
     });
   };
 
+  // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -102,6 +104,7 @@ function PostCreateForm() {
     }
   };
 
+  // Function to handle media file change
   const handleChangeMedia = (event) => {
     if (event.target.files.length) {
       const media = event.target.files[0];
@@ -117,6 +120,7 @@ function PostCreateForm() {
 return (
   <Form onSubmit={handleSubmit}>
     <Row>
+      {/* Media upload section */}
       <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
         <Container
           className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}

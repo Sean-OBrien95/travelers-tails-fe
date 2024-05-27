@@ -8,12 +8,12 @@ import { Button } from "react-bootstrap";
 import { useSetProfileData } from "../../contexts/ProfileDataContext";
 
 const Profile = (props) => {
+  // Destructure props
   const { profile, mobile, imageSize = 55 } = props;
   const { id, following_id, image, owner } = profile;
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
-
   const { handleFollow, handleUnfollow } = useSetProfileData();
 
   return (
@@ -21,6 +21,7 @@ const Profile = (props) => {
       className={`my-3 d-flex align-items-center ${mobile && "flex-column"}`}
     >
       <div>
+        {/* Link to the profile page */}
         <Link className="align-self-center" to={`/profiles/${id}`}>
           <Avatar src={image} height={imageSize} />
         </Link>
@@ -29,10 +30,12 @@ const Profile = (props) => {
         <strong>{owner}</strong>
       </div>
       <div className={`text-right ${!mobile && "ml-auto"}`}>
+        {/* Render follow/unfollow button based on user's relationship with the profile */}
         {!mobile &&
           currentUser &&
           !is_owner &&
           (following_id ? (
+            // If already following, render unfollow button
             <Button
               className={`${btnStyles.Button} ${btnStyles.Bright}`}
               onClick={() => handleUnfollow(profile)}
@@ -40,6 +43,7 @@ const Profile = (props) => {
               unfollow
             </Button>
           ) : (
+            // If not following, render follow button
             <Button
               className={`${btnStyles.Button} ${btnStyles.Bright}`}
               onClick={() => handleFollow(profile)}

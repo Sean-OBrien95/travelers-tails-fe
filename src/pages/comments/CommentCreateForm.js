@@ -10,23 +10,31 @@ import { axiosRes } from "../../api/axiosDefaults";
 
 function CommentCreateForm(props) {
   const { post, setPost, setComments, profileImage, profile_id } = props;
+
   const [content, setContent] = useState("");
 
+  // Function to handle changes in the textarea
   const handleChange = (event) => {
     setContent(event.target.value);
   };
 
+  // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      // Send a post request to create a new comment
       const { data } = await axiosRes.post("/comments/", {
         content,
         post,
       });
+
+      // Update comments state to include the new comment
       setComments((prevComments) => ({
         ...prevComments,
         results: [data, ...prevComments.results],
       }));
+
+      // Update the post to increment comments count
       setPost((prevPost) => ({
         results: [
           {
@@ -35,12 +43,15 @@ function CommentCreateForm(props) {
           },
         ],
       }));
+
+      // Clear the content of the textarea after submission
       setContent("");
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
+  // JSX for rendering the comment create form
   return (
     <Form className="mt-2" onSubmit={handleSubmit}>
       <Form.Group>

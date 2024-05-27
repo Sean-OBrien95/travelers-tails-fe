@@ -18,16 +18,21 @@ import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
 const UsernameForm = () => {
+  // State variables
   const [username, setUsername] = useState("");
   const [errors, setErrors] = useState({});
 
+  // React router hooks for navigation
   const history = useHistory();
   const { id } = useParams();
 
+  // Accessing current user data from context
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
+  // Populate the username field with the current user's username on component mount
   useEffect(() => {
+    // Check if the current user matches the profile ID from the URL
     if (currentUser?.profile_id?.toString() === id) {
       setUsername(currentUser.username);
     } else {
@@ -35,12 +40,15 @@ const UsernameForm = () => {
     }
   }, [currentUser, history, id]);
 
+  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      // Send a PUT request to update the username
       await axiosRes.put("/dj-rest-auth/user/", {
         username,
       });
+      // Update the current user's username in the context
       setCurrentUser((prevUser) => ({
         ...prevUser,
         username,

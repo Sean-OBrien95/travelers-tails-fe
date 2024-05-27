@@ -4,6 +4,7 @@ import styles from "../styles/MoreDropdown.module.css";
 import { useHistory } from "react-router";
 
 
+// Custom component for rendering three dots icon
 const ThreeDots = React.forwardRef(({ onClick }, ref) => (
   <i
     className="fas fa-ellipsis-v"
@@ -15,6 +16,7 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
   />
 ));
 
+// Functional component for rendering more options dropdown
 export const MoreDropdown = ({ handleEdit, handleDelete }) => {
   return (
     <Dropdown className="ml-auto" drop="left">
@@ -43,8 +45,10 @@ export const MoreDropdown = ({ handleEdit, handleDelete }) => {
   );
 };
 
+// Functional component for rendering profile edit dropdown
 export const ProfileEditDropdown = ({ id }) => {
   const history = useHistory();
+  // Rendering the profile edit dropdown
   return (
     <Dropdown className={`ml-auto px-3 ${styles.Absolute}`} drop="left">
       <Dropdown.Toggle as={ThreeDots} />

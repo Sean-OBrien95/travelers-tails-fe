@@ -19,13 +19,20 @@ import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import Notification from './pages/notifications/Notifications';
 
 
+
 function App() {
+  // Get the current user from the context
   const currentUser = useCurrentUser();
+
+  // Get the profile ID of the current user, or an empty string if no user is logged in
   const profile_id = currentUser?.profile_id || "";
+  
+  // State to control the display of the sign-up image
   const [showSignUpImage, setShowSignUpImage] = useState('none');
 
   return (
         <div className={styles.App}>
+          {/* Sign up image */}
           <img
             src={signUpImage}
             style={{ display: showSignUpImage, position: 'absolute', width: '100vw', objectFit: 'cover', minHeight: 'calc(100vh + 105px)' }} alt="background"

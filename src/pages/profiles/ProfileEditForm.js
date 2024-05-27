@@ -19,12 +19,14 @@ import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
 const ProfileEditForm = () => {
+  // Access current user and set current user functions from context
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const { id } = useParams();
   const history = useHistory();
   const imageFile = useRef();
 
+  // State variables
   const [profileData, setProfileData] = useState({
     name: "",
     content: "",
@@ -34,12 +36,16 @@ const ProfileEditForm = () => {
 
   const [errors, setErrors] = useState({});
 
+  // Fetch profile data on component mount
   useEffect(() => {
     const handleMount = async () => {
+      // Check if the current user owns the profile being edited
       if (currentUser?.profile_id?.toString() === id) {
         try {
+          // Fetch profile data from the server
           const { data } = await axiosReq.get(`/profiles/${id}/`);
           const { name, content, image } = data;
+          // Update profileData state with fetched data
           setProfileData({ name, content, image });
         } catch (err) {
           console.log(err);
@@ -53,6 +59,7 @@ const ProfileEditForm = () => {
     handleMount();
   }, [currentUser, history, id]);
 
+  // Handle change in form input fields
   const handleChange = (event) => {
     setProfileData({
       ...profileData,
@@ -60,6 +67,7 @@ const ProfileEditForm = () => {
     });
   };
 
+  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -71,11 +79,13 @@ const ProfileEditForm = () => {
     }
 
     try {
+      // Submit form data to update profile
       const { data } = await axiosReq.put(`/profiles/${id}/`, formData);
       setCurrentUser((currentUser) => ({
         ...currentUser,
         profile_image: data.image,
       }));
+      // Navigate back to the previous page after successful submission
       history.goBack();
     } catch (err) {
       console.log(err);
@@ -83,6 +93,7 @@ const ProfileEditForm = () => {
     }
   };
 
+  // JSX for text input fields
   const textFields = (
     <>
       <Form.Group>

@@ -9,12 +9,16 @@ import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 
 
+// Functional component for rendering the navbar
 const NavBar = () => {
+  // Getting current user data and setCurrentUser function from context
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
+  // State and handler for toggling the navbar menu
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
+  // Handler for user sign out
   const handleSignOut = async () => {
     try {
       await axios.post("dj-rest-auth/logout/");
@@ -24,6 +28,7 @@ const NavBar = () => {
     }
   };
 
+  // Navigation icon for adding a new post
   const addPostIcon = (
     <NavLink
       className={styles.NavLink}
@@ -34,6 +39,7 @@ const NavBar = () => {
     </NavLink>
   );
 
+  // Icons to display for logged-in users
   const loggedInIcons =
     <>
       <NavLink
@@ -68,6 +74,7 @@ const NavBar = () => {
       </NavLink>
     </>
 
+  // Icons to display for logged-out users
   const loggedOutIcons = (
     <>
     <NavLink
@@ -87,6 +94,7 @@ const NavBar = () => {
     </>
   );
 
+  // Rendering of NavBar
   return (
     <Navbar expanded={expanded} className={styles.NavBar} expand="md" fixed="top">
       <Container>

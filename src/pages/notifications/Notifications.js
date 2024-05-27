@@ -17,14 +17,19 @@ const Notification = () => {
   const [page, setPage] = useState(1);
   const history = useHistory();
 
+  // Function to fetch notifications from the server
   const fetchNotifications = async () => {
     try {
       setLoading(true);
+      // Fetch notifications from the server
       const response = await axios.get(`notifications/?page=${page}`);
+      // Reverse the order of notifications and add to the existing list
       const userNotifications = response.data.results.reverse(); 
       setNotifications([...notifications, ...userNotifications]);
+      // Update loading state and page number
       setLoading(false);
       setPage(page + 1);
+      // Check if there are more notifications to load
       if (!response.data.next) {
         setHasMore(false);
       }
@@ -34,13 +39,16 @@ const Notification = () => {
     }
   };
 
+  // Fetch notifications when the component mounts
   useEffect(() => {
     fetchNotifications();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Function to handle click on a notification item
   const handleClick = async (notification) => {
     try {
+      // If notification type is like or comment, navigate to the corresponding post
       if (notification.notification_type === 'like' || notification.notification_type === 'comment') {
         history.push(`/posts/${notification.post}`);
       }
@@ -49,17 +57,20 @@ const Notification = () => {
     }
   };
 
+  // JSX for rendering the component
   return (
     <Container>
       <Row className="h-100">
         <Col Col className="py-2 p-0 p-lg-2" lg={8}>
           <PopularProfiles mobile />
+          {/* Infinite scroll for notifications */}
           <InfiniteScroll
             dataLength={notifications.length}
             next={fetchNotifications} 
             hasMore={hasMore}
           >
             <div className={styles.notificationList}>
+              {/* Map through notifications and render each item */}
               {notifications.map(notification => (
                 <div key={notification.id} className={styles.notificationItem} onClick={() => handleClick(notification)}>
                   <Avatar src={notification.profile_image} />
@@ -75,6 +86,7 @@ const Notification = () => {
               <Asset spinner />
             </div>
           )}
+          {/* Message for no notifications */}
           {!loading && notifications.length === 0 && (
             <div className={`${appStyles.Content} d-flex flex-column justify-content-center align-items-center`}>
               <Asset src={NoResultsImage} />

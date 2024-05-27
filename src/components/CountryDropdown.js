@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import FormControl from "react-bootstrap/FormControl";
 
+
+// List of countries
 const countries = [
   "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda",
   "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain",
@@ -33,13 +35,17 @@ const countries = [
 ];
 
 
+// Functional component for rendering a country dropdown
 const CountryDropdown = ({ onSelectCountry, defaultValue }) => {
+  // State to manage the selected value
   const [value, setValue] = useState(defaultValue || "");
 
+  // Effect to update the value when defaultValue changes
   useEffect(() => {
     setValue(defaultValue || "");
   }, [defaultValue]);
 
+  //Function to handle country selection
   const handleSelect = (country) => {
     setValue(country);
     onSelectCountry(country);
@@ -59,6 +65,7 @@ const CountryDropdown = ({ onSelectCountry, defaultValue }) => {
           value={value}
         />
         <ul className="list-unstyled">
+          {/* Filtering and mapping through countries */}
           {countries
             .filter((country) =>
               country.toLowerCase().startsWith(value.toLowerCase())
@@ -74,6 +81,7 @@ const CountryDropdown = ({ onSelectCountry, defaultValue }) => {
   );
 };
 
+// CustomToggle component for dropdown toggle
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
   <button
     ref={ref}
@@ -88,6 +96,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
   </button>
 ));
 
+// CustomMenu component for dropdown menu
 const CustomMenu = React.forwardRef(
   ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
     const [value] = useState("");

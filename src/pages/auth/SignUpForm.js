@@ -13,13 +13,16 @@ import axios from "axios";
 import { useRedirect } from "../../hooks/useRedirect";
 
 const SignUpForm = ({ setShowSignUpImage }) => {
-
+  // Effect hook to show or hide sign up image
   useEffect(() => {
-    setShowSignUpImage('block')
+    setShowSignUpImage('block');
+    // Cleanup function to hide sign up image when component unmounts or re-renders
     return () => setShowSignUpImage('none');
-  }, [setShowSignUpImage])
+  }, [setShowSignUpImage]);
 
   useRedirect("loggedIn");
+
+  // State hook to manage sign up form data
   const [signUpData, setSignUpData] = useState({
     username: "",
     password1: "",
@@ -27,9 +30,12 @@ const SignUpForm = ({ setShowSignUpImage }) => {
   });
 
   const { username, password1, password2 } = signUpData;
+
   const [errors, setErrors] = useState({});
+
   const history = useHistory();
 
+  // Function to handle input change
   const handleChange = (event) => {
     setSignUpData({
       ...signUpData,
@@ -37,16 +43,19 @@ const SignUpForm = ({ setShowSignUpImage }) => {
     });
   };
 
+  // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
+      // Redirect to sign in page after successful sign up
       history.push("/signin");
     } catch (err) {
       setErrors(err.response?.data);
     }
   };
 
+  // JSX for the sign up form
   return (
     <div className={styles.pageContainer}>
       <Container className={`${appStyles.Content} ${styles.formContainer}`}>
@@ -69,6 +78,7 @@ const SignUpForm = ({ setShowSignUpImage }) => {
             </Alert>
           ))}
 
+          {/* Password input */}
           <Form.Group controlId="password1">
             <Form.Label>Password</Form.Label>
             <Form.Control
@@ -79,6 +89,7 @@ const SignUpForm = ({ setShowSignUpImage }) => {
               onChange={handleChange}
             />
           </Form.Group>
+          {/* Display password validation errors */}
           {errors.password1?.map((message, idx) => (
             <Alert key={idx} variant="warning">
               {message}
@@ -95,6 +106,7 @@ const SignUpForm = ({ setShowSignUpImage }) => {
               onChange={handleChange}
             />
           </Form.Group>
+          {/* Display confirm password validation errors */}
           {errors.password2?.map((message, idx) => (
             <Alert key={idx} variant="warning">
               {message}
@@ -107,13 +119,13 @@ const SignUpForm = ({ setShowSignUpImage }) => {
           >
             Sign Up
           </Button>
+          {/* Display non-field errors */}
           {errors.non_field_errors?.map((message, idx) => (
             <Alert key={idx} variant="warning" className="mt-3">
               {message}
             </Alert>
           ))}
         </Form>
-
         <Link className={styles.Link} to="/signin">
           Already have an account? <span>Sign in</span>
         </Link>
