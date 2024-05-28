@@ -438,6 +438,13 @@ All things that link to other pages, eg, posts or profile, have been tested that
         <td>Video plays with no issue</td>
         <td>pass</td>
     </tr>
+    <tr>
+        <td>Comment and like counter increase/decrease</td>
+        <td>Wehn a user leaves a like or comment, or unlikes / deletes a comment, it is reflected in counter</td>
+        <td>Like/Unlike, then leave a comment and delete it</td>
+        <td>Counter increases and decreases accordingly</td>
+        <td>pass</td>
+    </tr>
 </table>
 
 ## Feed Testing
@@ -472,111 +479,27 @@ All things that link to other pages, eg, posts or profile, have been tested that
     <tr>
         <td>Can see notification in chronological order</td>
         <td>When you click on notification, all your notification will appear in correct order</td>
-        <td>Click authors name</td>
-        <td>Directed to their profile</td>
+        <td>Click on notification tab</td>
+        <td>Notifications appear in most recent order</td>
         <td>pass</td>
     </tr>
     <tr>
-        <td>Post can be liked/unliked by logged in users</td>
-        <td>When you're logged in and click like/unlike, the counter will increase/decrease and the button will change</td>
-        <td>Click on like/unlike as a logged in user</td>
-        <td>Button changes and counter increases/decreases</td>
+        <td>Clicking a notification will bring you to post</td>
+        <td>When you click a notification, it will bring you to the correct post</td>
+        <td>Click on notification</td>
+        <td>Brought to correct post</td>
         <td>pass</td>
     </tr>
     <tr>
-        <td>Comment counter</td>
-        <td>Comment counter increases and decrease when comments are added or removed</td>
-        <td>Leave/delete a comment</td>
-        <td>Counter increases/decreases accordingly</td>
-        <td>pass</td>
-    </tr>
-    <tr>
-        <td>Bookmark</td>
-        <td>When you're logged in, you can add/remove posts to your bookmarked section</td>
-        <td>Click bookmark button</td>
-        <td>Colour of button changes and added/removed from bookmarked section</td>
-        <td>pass</td>
-    </tr>
-    <tr>
-        <td>Edit and Delete buttons</td>
-        <td>If you are the author, edit and delete buttons will appear and link to relevant edit and delete pages</td>
-        <td>Login as user and navigate to post you created</td>
-        <td>Edit and Delete button present and take you right places</td>
-        <td>pass</td>
-    </tr>
-    <tr>
-        <td>Can like/unlike comments</td>
-        <td>If you are logged in, you can like/unlike comments</td>
-        <td>Click like button next to comment</td>
-        <td>Colour changes and couner increases/decrease</td>
-        <td>pass</td>
-    </tr>
-    <tr>
-        <td>View commentors profile</td>
-        <td>If you are logged in, you can view profiles of people who left comments</td>
-        <td>Click on users name next to comment</td>
-        <td>Get taken to their profile</td>
-        <td>pass</td>
-    </tr>
-    <tr>
-        <td>Leave a comment</td>
-        <td>If you are logged in, you can leave a comment</td>
-        <td>Type a comment into the comment section and hit submit</td>
-        <td>Toast message appears telling you waiting for approval</td>
-        <td>pass</td>
-    </tr>
-    <tr>
-        <td>Delete a comment</td>
-        <td>If you are logged in, you can delete a comment you made</td>
-        <td>Click on the X next to your comment</td>
-        <td>Page reloads without your comment and toast message given for feedback</td>
-        <td>pass</td>
-    </tr>
-    <tr>
-        <td>Delete a comment</td>
-        <td>If you are logged in, you can delete a comment you made</td>
-        <td>Click on the X next to your comment</td>
-        <td>Page reloads without your comment and toast message given for feedback</td>
-        <td>pass</td>
-    </tr>
-    <tr>
-        <td>Like and bookmark disabled if logged out</td>
-        <td>If you are logged out, you can not like or bookmark</td>
-        <td>Try like or bookmark as a logged out user</td>
-        <td>Can not do buttins disabled</td>
-        <td>pass</td>
-    </tr>
-    <tr>
-        <td>Comments disabled if logged out</td>
-        <td>If you are logged out, you can not comment</td>
-        <td>Try comment as a logged out user</td>
-        <td>Can not do comment box disabled</td>
-        <td>pass</td>
-    </tr>
-    <tr>
-        <td>Can't view author profile if logged out</td>
-        <td>If you are logged out, you can not view authors profile</td>
-        <td>Try view authors profile as a logged out user</td>
-        <td>When name clicked directed to login page</td>
-        <td>pass</td>
-    </tr>
-    <tr>
-        <td>Can't view commentors profile if logged out</td>
-        <td>If you are logged out, you can not view commentors profile</td>
-        <td>Try view commentors as a logged out user</td>
-        <td>When name clicked linked back to login page</td>
-        <td>pass</td>
-    </tr>
-    <tr>
-        <td>Can't like comments if logged out</td>
-        <td>If you are logged out, you can not like comments</td>
-        <td>Try like a comment as a logged out user</td>
-        <td>Redirected to login page</td>
+        <td>Infinite Scroll</td>
+        <td>When you have 10+ notifications, infinte scroll will occur</td>
+        <td>Login as user with 10+ notifications</td>
+        <td>Side bar gets smaller as you scroll</td>
         <td>pass</td>
     </tr>
 </table>
 
-## Edit Post
+## Liked Page
 
 <table>
     <tr>
@@ -587,22 +510,68 @@ All things that link to other pages, eg, posts or profile, have been tested that
         <th>Pass/Fail</th>
     </tr>
     <tr>
-        <td>Post can be edited by author</td>
-        <td>When you on edit, you are taken to the edit page</td>
-        <td>Click on edit as the author</td>
-        <td>Directed to edit page that looks and works the same as create page</td>
-        <td>pass</td>
-    </tr>
-    <tr>
-        <td>Info saved after submitted</td>
-        <td>When you change info on the edit page such as image or content, this is refelected on the post and preview</td>
-        <td>Change all information on the post and submit</td>
-        <td>Displaying exactly as it is intended and green toast message appears</td>
+        <td>Page should only show posts you've liked</td>
+        <td>When looking at the feed you should only get activity from accounts you follow</td>
+        <td>Go to feed</td>
+        <td>Only followed users posts appear</td>
         <td>pass</td>
     </tr>
 </table>
 
-## Delete Post
+## Profile Page
+<table>
+    <tr>
+        <th>Feature</th>
+        <th>Expected Outcome</th>
+        <th>Test</th>
+        <th>Result</th>
+        <th>Pass/Fail</th>
+    </tr>
+    <tr>
+        <td>Stat changes</td>
+        <td>When you make a post, follow someone, or gain a follower, your stats will change accordingly</td>
+        <td>Make a new post, follow someone, and get a follow from another account</td>
+        <td>Stats reflect changes</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>User posts</td>
+        <td>When on any profile, you should be able to see all their posts</td>
+        <td>Go to somones page</td>
+        <td>Can see all their posts</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Edit profile</td>
+        <td>When you click edit profile, and update profile image and bio, this change will save</td>
+        <td>Edit bio and profile picture</td>
+        <td>Change is saved when click save</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Follow/Unfollow from profile</td>
+        <td>When you are on someone elses profile and you click follow/unfollow, it will take action immediately</td>
+        <td>Go to someone page and follow/unfollow</td>
+        <td>Button changes instantly</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Change username</td>
+        <td>When on your own profile and change username, your name will be updated immediatly</td>
+        <td>Go to edit username and change it</td>
+        <td>Updates immediately</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Change password</td>
+        <td>When on your own profile and change password, your password will be updated immediatly</td>
+        <td>Go to edit password and change it, logout and back in with new password</td>
+        <td>Logged in with new password</td>
+        <td>pass</td>
+    </tr>
+</table>
+
+## Create Post
 
 <table>
     <tr>
@@ -613,29 +582,36 @@ All things that link to other pages, eg, posts or profile, have been tested that
         <th>Pass/Fail</th>
     </tr>
     <tr>
-        <td>Taken to delete post confirmation page</td>
-        <td>When you click delete button, you are taken to the  delete confirmation page</td>
-        <td>Click on delete button on post</td>
-        <td>Directed to delet confirmation page</td>
+        <td>Posts must have all fields filled in</td>
+        <td>All fields should be properly filled out before being able to post</td>
+        <td>Try post with each field blank one by one</td>
+        <td>Given warning for each empty field</td>
         <td>pass</td>
     </tr>
     <tr>
-        <td>Post not deleted</td>
-        <td>When No is selected, you are taken back to home page</td>
-        <td>Click no on profile deletion</td>
-        <td>Taken to home page</td>
+        <td>Posts work with both images and videos</td>
+        <td>Posts should be able to handle both images and videos</td>
+        <td>Create two posts, one with a video and one with an image</td>
+        <td>Both post successfully</td>
         <td>pass</td>
     </tr>
     <tr>
-        <td>Post deleted</td>
-        <td>When Yes is selected, you are taken back to home page and the post is deleted</td>
-        <td>Click yes on profile deletion</td>
-        <td>Taken to home page, post is now deleted, and red toast message appears confirming deletion</td>
+        <td>Country Dropdown</td>
+        <td>When selecting a country, a dropdown should appear that you can also type a country into</td>
+        <td>Go to location field and type a country</td>
+        <td>Correct country appears</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Can change media before posting</td>
+        <td>When a user selects a image/video to upload, a change media button should appear beneath that allows them to change it before posting</td>
+        <td>Upload an image or video and then try to change it by clicking change media</td>
+        <td>Allows you to change upload</td>
         <td>pass</td>
     </tr>
 </table>
 
-## Profile
+## Edit / Delete Post
 
 <table>
     <tr>
@@ -646,73 +622,31 @@ All things that link to other pages, eg, posts or profile, have been tested that
         <th>Pass/Fail</th>
     </tr>
     <tr>
-        <td>Page is shown as blank when first created</td>
-        <td>If you first visit your profile, yu have a default profil picture and all sections display blank</td>
-        <td>Create a new profile and go to the profile section</td>
-        <td>Default profile photo and all fields blank</td>
+        <td>Posts will have fields already filled with previous info</td>
+        <td>When editing a post, the previous info should be in place for everything</td>
+        <td>Edit a post</td>
+        <td>Fields already filled with previous info</td>
         <td>pass</td>
     </tr>
     <tr>
-        <td>Edit, Bookmarked, Delete only appear on your profile</td>
-        <td>When logged in, certain buttons wfor edit bokmarks and delete will only appear on your own profile</td>
-        <td>Go to someone else profile</td>
-        <td>These buttons do not appear</td>
+        <td>Can change from an image post to a video post and vice versa</td>
+        <td>Users should be able to change the media type from video/image to other</td>
+        <td>Edit an image post and change it video, then change back after saving</td>
+        <td>Posts successfully</td>
         <td>pass</td>
     </tr>
     <tr>
-        <td>Edited info and page saves</td>
-        <td>When a user edits their bio, profile photo, interests, vegan length, and favourite animal it saves to their profile</td>
-        <td>Update all info on edit page and click save</td>
-        <td>All info is updated as expected, green toast message giving feedback</td>
+        <td>Country Dropdown</td>
+        <td>When selecting a country, a dropdown should appear that you can also type a country into</td>
+        <td>Go to location field and type a country</td>
+        <td>Correct country appears</td>
         <td>pass</td>
     </tr>
     <tr>
-        <td>Saved Bookmarks</td>
-        <td>When a user selectes the bookmark section, all bookmarked posts will be displayed here</td>
-        <td>Click bookmarks section after bookmarking some posts</td>
-        <td>Post titles appear here ina  list</td>
-        <td>pass</td>
-    </tr>
-    <tr>
-        <td>Bookmark Links</td>
-        <td>When a user selectes a title from the bookmark section, they are taken to that post</td>
-        <td>Click title in bookmark section</td>
-        <td>Get taken to that post</td>
-        <td>pass</td>
-    </tr>
-    <tr>
-        <td>No Bookmarks</td>
-        <td>When a user selectes the bookmark section, if they have not bookmarked anything it will say no bookmarks yet</td>
-        <td>Click bookmarks section without bookmarking anything</td>
-        <td>Told no bookmarks yet</td>
-        <td>pass</td>
-    </tr>
-    <tr>
-        <td>No Bookmarks</td>
-        <td>When a user selectes the bookmark section, if they have not bookmarked anything it will say no bookmarks yet</td>
-        <td>Click bookmarks section without bookmarking anything</td>
-        <td>Told no bookmarks yet</td>
-        <td>pass</td>
-    </tr>
-    <tr>
-        <td>Delete profile option</td>
-        <td>When a user clicks delete on their own profile, they are taken to a confirmation page</td>
-        <td>Click delete button</td>
-        <td>Taken to confirmation screen</td>
-        <td>pass</td>
-    </tr>
-    <tr>
-        <td>Don't delete profile</td>
-        <td>When a user clicks no to deleting profile, they ar4e taken back to their profile screen</td>
-        <td>Click no to delete</td>
-        <td>Taken to profile</td>
-        <td>pass</td>
-    </tr>
-    <tr>
-        <td>Full profile deletion</td>
-        <td>When a user clicks yes to deleting profile, they are logged out, profile deleted, cannot recover, likes, comments, and posts written are all deleted permanently</td>
-        <td>Click yes to deleting profile, try log in and look for likes, comments, and created posts</td>
-        <td>Taken to home page, red toast message profile deleted, cannot log back in all traced of user gone</td>
+        <td>Posts can be deleted</td>
+        <td>Users should be able to delete posts they've created</td>
+        <td>Click delete post</td>
+        <td>Post is deleted</td>
         <td>pass</td>
     </tr>
 </table>
@@ -730,8 +664,8 @@ All things that link to other pages, eg, posts or profile, have been tested that
     <tr>
         <td>Creating a user</td>
         <td>When you complete registration form with valid information, you're given user access</td>
-        <td>Complete form with valid username and password</td>
-        <td>Profile created and given user access, green toast message appears</td>
+        <td>Complete form with valid username and passwords</td>
+        <td>Profile created and brought to sign in page</td>
         <td>pass</td>
     </tr>
     <tr>
@@ -742,24 +676,10 @@ All things that link to other pages, eg, posts or profile, have been tested that
         <td>pass</td>
     </tr>
     <tr>
-        <td>Special characters</td>
-        <td>When you complete registration form with special characters in username you are given error</td>
-        <td>Complete form with special charactres is username</td>
-        <td>Given error</td>
-        <td>pass</td>
-    </tr>
-    <tr>
         <td>Creating a user</td>
         <td>When you complete registration form with valid information, you're given user access</td>
         <td>Complete form with valid username and password</td>
         <td>Profile created and given user access</td>
-        <td>pass</td>
-    </tr>
-    <tr>
-        <td>Password compliance</td>
-        <td>When you complete registration form a password that does not fit what is outlined on the form you are given an error</td>
-        <td>Complete form with invalid password</td>
-        <td>Get error, told which rules are not being considered</td>
         <td>pass</td>
     </tr>
 </table>
@@ -778,7 +698,7 @@ All things that link to other pages, eg, posts or profile, have been tested that
         <td>Login</td>
         <td>When you complete login form with a username that matches password, you are logged in</td>
         <td>Complete form with correct username and password combo</td>
-        <td>Logged in as user, green toast message appears</td>
+        <td>Logged in as user, navbar changes</td>
         <td>pass</td>
     </tr>
     <tr>
@@ -804,7 +724,7 @@ All things that link to other pages, eg, posts or profile, have been tested that
         <td>Logout</td>
         <td>Sign out button logs current user out</td>
         <td>Hit sign out button</td>
-        <td>User signed out, given green toast message to let user know</td>
+        <td>User signed out, Navbar changes</td>
         <td>pass</td>
     </tr>
 </table>
@@ -821,9 +741,9 @@ All things that link to other pages, eg, posts or profile, have been tested that
     </tr>
     <tr>
         <td>Page not found</td>
-        <td>When you try access a page that does not exist, you are told so and given a link to the home page</td>
+        <td>When you try access a page that does not exist, you are told so and can navigate out using the navbar</td>
         <td>Go to a page that doesnt exist</td>
-        <td>Told doesnt exist and given a link to home page</td>
+        <td>Told doesnt exist and can use navbar to escape</td>
         <td>pass</td>
     </tr>
 </table>
