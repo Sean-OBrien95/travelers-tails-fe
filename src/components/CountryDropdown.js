@@ -92,7 +92,6 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     style={{ textDecoration: 'none', color: 'inherit', background: 'none', border: 'none', cursor: 'pointer' }}
   >
     {children}
-    &#x25bc;
   </button>
 ));
 
