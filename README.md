@@ -123,9 +123,9 @@ Please see attached wireframes for the main pages of the project, being the home
 
 # Posts Section
 
-- The Posts Section
+- The Home page Section, Feed section, and Liked section
 
-* This section has one continuous column set with infite scroll. This workd the same on home, feed, and liked.
+* This section has one continuous column set with infite scroll. This works the same on home, feed, and liked.
 * In these you will see the user who posted, the location tag, the date it was posted, the image or video, and how many likes/comments each post has.
 * The posts display in a chronological order and when clicked will bring you to the content of the posts
 
@@ -156,47 +156,43 @@ Please see attached wireframes for the main pages of the project, being the home
 <img src="src/assets/popprofiles_desk.png" alt="Image of popular profiles section section on desktop">
 <img src="src/assets/popprofiles_mobile.png" alt="Image of popular profiles section section on mobile">
 
-# Create Post form
+# Create / Edit Post form
 
-- Form for post creation
+- Form for post creation and editing
 
 - A form that has 4 mandatory fields.
 - The user will have to enter the title and content.
 - For the location, they must select a country. A dropdown will appear with all countries as well as a bar for the user to type in a country so they do not have to scroll looking
+- If the user is editing a post, all 4 fields will be filled out with what was there before.
 
-<img src="static/images/create_postdesk.png" alt="Photo of create post form on desktop">
-<img src="static/images/create_postmobile.png" alt="Photo of create post form on mobile">
+<img src="src/assets/signup1.png" alt="Photo of create post form on desktop">
+<img src="src/assets/signup2.png" alt="Photo of create post form on mobile">
 
-# Approve Comments Page
+# Notifications Page
 
-- Page for approving comments
+- Page for Notifications
 
-- This is the page where super users can approve all other users comments.
-- There will be an option next to the comment section and if they are accepted you will be taken to the page of the post to show the comment is now there.
-- If you decide to delete the post you are also taken back to the original post, but the comment will not appear and will be wiped from the system.
-- If there are no comments, the user will be told this.
+- This is the page where a users notifications will show up
+- Each notification will show the user who sent the notifications avatar and username
+- It will tell you which type of notification it is being either like or comment
+- When you click on these notifications, it will take you to the post the notification is about.
 
-<img src="static/images/approve_comments_desk.png" alt="Photo of comment approval page on desktop">
-<img src="static/images/approve_comments_mobile.png" alt="Photo of comment approval page on mobile">
-<img src="static/images/approve_comments_empty.png" alt="Photo of comment approval page with no comments to approve">
+<img src="src/assets/notification1.png" alt="Photo of notifications page on desktop">
+<img src="src/assets/notification2.png" alt="Photo of notifications page on mobile">
 
-# Edit post
+# Profiles
 
-- Form for editing posts
+- Profile pages
 
-- This section is pretty much identical to post creation.
-- It includes everything the same and when saved the post will be updated, and the user will be given feedback
+- The profile page is accessible in the navbar by clicking your after, or for someone else by clicking their profile.
+- This section includes profile picture, stats on number of posts, followers, and following.
+- If you are on your own profile, you will have the option to edit your bio, as well as change username and password.
+- If on someone elses you will be able to follow/unfollow
 
-<img src="static/images/edit_post.png" alt="Image of post edit page">
-
-# Delete Post
-
-- This section is what a user will see wwhen deleting a post.
-- They will be given a confirmation screen, if they select yes the post will be removed, they will be directed to the home screen, and given feedback
-- If they do not accept, they will be directed back to the unchanged post
-
-<img src="static/images/deletepost_desk.png" alt="Image of delete post screen on desktop">
-<img src="static/images/deletepost_mobile.png" alt="Image of delete post screen on mobile">
+<img src="src/assets/profile1.png" alt="Image of owners profile page on desktop">
+<img src="src/assets/profile2.png" alt="Image of owners profile page on mobile">
+<img src="src/assets/profile3.png" alt="Image of another users profile page on desktop">
+<img src="src/assets/profile4.png" alt="Image of another users profile page on mobile">
 
 # Profile
 
@@ -209,81 +205,48 @@ Please see attached wireframes for the main pages of the project, being the home
 <img src="static/images/profile_desk.png" alt="Image of profile from desktop view">
 <img src="static/images/profile_mobile.png" alt="Image of profile from mobile view">
 
-# Edit profile
-
-- The edit profile section is where users can change their information
-- It is a basic form that allows users to upload a photo for their progile photo, update bio, include interests, and enter their favourite animal
-- They will also have a selection of vegan length, which is drop down menu for them to select from
-- Including this information is entirely option
-
-<img src="static/images/edit_profile.png" alt="Image of edit profile form">
-
-# Bookmarks
-
-- This the section where a user will be able to see every post they have bookmarked.
-- By clicking any of these, they will be taken to that specific post.
-- If the user has not bookmarked any post a paragraph will appear saying no bookmarked posts yet
-
-<img src="static/images/bookmark_desk.png" alt="Photo of bookmark section on desktop">
-<img src="static/images/bookmark_mobile.png" alt="Photo of bookmark section on mobile">
-
-# Delete profile
-
-- This section will appear after the user has selected to delete their profile.
-- It will have 2 buttons, yes and no.
-- The yes button will delete the profile and bring you back to the home page as a logged out user and give feedback with a toast message.
-- The No button will take you back to your profile.
-
-<img src="static/images/deleteprofile_desk.png" alt="Photo of profile delete section on desktop">
-<img src="static/images/deleteprofile_mobile.png" alt="Photo of profile delete section on mobile">
-
 # Login Page
 
-- This is the allauth page for logging in as a user who has already registered
-- I have altered it slightly to remove the forgot password link, as this is a feature I will not be using in this project.
+- This is the login page for users who already have an account.
+- It prompts for username and password.
 
-<img src="static/images/login_desk.png" alt="Photo of login page on desktop">
-<img src="static/images/login_mobile.png" alt="Photo of login page on mobile">
+<img src="src/assets/login1.png" alt="Photo of login page on desktop">
+<img src="src/assets/login2.png" alt="Photo of login page on mobile">
 
-# Logout Page
+# Registration Page
 
-- This is the allauth page for logging out
-- It is simple and only has one button for confirmtaion.
+- This is the page for creating an account
+- IT will check you have entered same password twice, as well as checking you have nnot entered a username that is already taken.
 
-<img src="static/images/logout_desk.png" alt="Photo of logout page on desktop">
-<img src="static/images/logout_mobile.png" alt="Photo of logout page on mobile">
-
-# Registeration Page
-
-- The registration page is provided by allauth as well
-- It has a section to enter your username, password, confirmation, and has instructions and what kinds of passwords are allowed.
-- There is also an optional section for email
-
-<img src="static/images/registration_desk.png" alt="Photo of signup page on desktop">
-<img src="static/images/registration_mobile.png" alt="Photo of signup page on mobile">
+<img src="src/assets/register1.png" alt="Photo of registration page on desktop">
+<img src="src/assets/register2.png" alt="Photo of registration page on mobile">
 
 # 404 Error page
 
 - A simple 404 page telling the user that this page does not exist.
-- Includes a link back to the hom page.
+- Includes navbar so user can get back easily
 
-<img src="static/images/404_desk.png" alt="Photo of 404 error page on desktop">
-<img src="static/images/404_mobile.png" alt="Photo of 404 error page on mobile">
+<img src="src/assets/404.png" alt="Photo of 404 error page on desktop">
 
 # Future Features
 
-- There were a number of features that I would have liked to implement, but felt they were outside the scope of this project or unneccessary
-- One of these features was giving the user the option to change their password. I had begun implementing this but stopped as I had to make linking emails to profile mandatory and felt this was outside the scope of this project.
-- Another feature I wanted to implement was a dark mode, but has opted against it as I felt it may be too time consuming and not needed for this particular project.
-- I would like to come back at a future date, and implement them in future.
+- There were a number of features that I would have liked to implement, but was not able to implement due to time constraints.
+- One of these features was for the profile section to show a list of countries visited by the user. I intend on implementing this at a later stage
+- Another feature was an interactive map for each users profile that dispalyed a map of all countries in the world and had the visited countried marked. I had decided that this may be outiside the scope of the project
+- Another feature was to be able to click on the location from a post, and be taken to a page similar to liked where it shows all posts that have this location marked.
+- Another was a setting feature, mostly for setting a profile to public or private.
+- And lastly was a messaging feature, I began to implement this on the backend but due to time constraints was not able to complete.
+- I wish to come back to these at a future date and get all implemented
 
 # Testing
 
-- Ran html through W3C validator, have gotten some small warning back. One of the pages is the Signup / Registration pages which is an allauth page that I am unable to edit. Another is any page using summernote, again which I am unable to edit.
+- Ran html through W3C validator without any errors
 
 - Ran through Jigsaw css checker, no issues.
 
-- Ran through Pep8 checker for Python and come back with mostly no errors. One line could not be shortened and this was line 72 in test_models.py
+- Ran through JSHint, most pages have gotten small error but these are linked to ES11 and the pre-built code within React.
+
+- Ran backend through Pep8 checker for Python and come back with mostly no errors. Some lines in settings.py could not be shortened, but these are the only errors.
 
 - I have checked screen compatibility for phone and tablet, I have checked tablet by using the inspect tool and shrinking down to size and have tested on my own personal mobile to assure it is responsive.
 
@@ -293,13 +256,9 @@ Throughout the project I had encountered several bugs which I will give details 
 
 Resolved bugs:
 
-- An issue I encoutered was when starting out the project and setting up the registration page using allauth. The page was giving me an error when ever I correctly completed the form. This was a redirection but I noticed it was not happening on a different browser. I realised the issue was with the browser settings I had configured but once had moved browser it was working perfectly.
-- Another issue I encountered was extending the base.html to my allauth pages, eg. login/logout etc. After changing it to extend the correct html it was still not showing visually. I had noticed I had accidentally has the allauth files in my directory twice and the one I was working for was the incorrect one. after extending the base in the correct file and eleteing the duplicate it worked as expected.
-- Another issue I faced was in creating posts from the frontend. When I was creating them I kept getting a no reverse match error. Upon investigating I found out that a slug was noy being created automatically. To fix this I overided the save method in the models which had them working perfectly
-- An issue I encountered was when making other users profiles viewable. Initially I could not figure out how to do this and was getting a no reverse error on any page that had a link to a user profile on it. This was because I was not properliny linking the profiles in but to the comments or author but when linked correctly it worked perfectly. This was initially on a seperate html sheet, but I condensed it to the same one as viewing your own profile just made an if statement to show extra buttons if its yours.
-- Anpther issue I was having with deleting user comments automatically when a user deletes their profile. Initially, they were not deleting, but when I did some investigating I realised that the comments were not being correctly linked to profiles due to a typo. Once this was fixed, it worked perfectly.
-- Another issue I was having was images loading incorrectly after deployment. I realised this was due to them following the file path instead of being taken from cloudinary. Once this was fixed it worked perfectly.
-- Another issue was with how the posts were presenting. When going to smaller screens all the buttons for likes, bookmark etc where getting very distorted. After I removed a div they were much easier to change to a vertical presentation which looked far neater.
+- An issue I encoutered was when starting out the project and setting up the registration page was gettting the custom image to work as a background. The issue I was having was that the container made it so two large white borders would appear, and this was not the style I wanted to go for. After some investigating, I figured out I would have to bypass the container by passing the image into app.js and using a useState variable, and chaging this state to block to achieve the style I wanted.
+- Another issue I encountered was getting it set up so the user could not only post an image or video, but also change from one type of media to another in the edit form, I found the way to work around this was to add a video field in on the backend, and then creating a change media function and allowing the field to accept either images or videos.
+- Another issue I faced was creating the notifications page, I was habing an issue with getting them to dispaly correctly and link to the post that the notification was linked to, as well as having trouble getting the users avatar to appear. To resolve this, I used the Avatar component which worked with rendering the profile images. When clicking on the notification it was taking me to a broken post, but after some investigating I found out the post it was taking me to was undefined, this was because I was handing in the wrong information, but once I corrected this it worked correctly.
 
 Unresolved bugs:
 
@@ -307,44 +266,28 @@ Unresolved bugs:
 
 # Lighthouse Testing
 
-<img src="static/images/lighthouse_home_desk.png" alt="image of lighthouse for homepage on desktop">
-<img src="static/images/lighthouse_home_mobile.png" alt="image of lighthouse for homepage on mobile">
-<img src="static/images/lighthouse_createpost_desk.png" alt="image of lighthouse for create post on desktop">
-<img src="static/images/lighthouse_createpost_mobile.png" alt="image of lighthouse for create post on mobile">
-<img src="static/images/lighthouse_approvecom_desk.png" alt="image of lighthouse for approve comments on desktop">
-<img src="static/images/lighthouse_approvecom_mobile.png" alt="image of lighthouse for approve comments on mobile">
-<img src="static/images/lighthouse_postdetail_desk.png" alt="image of lighthouse for post details on desktop">
-<img src="static/images/lighthouse_postdetail_mobile.png" alt="image of lighthouse for post details on mobile">
-<img src="static/images/lighthouse_delpost_desk.png" alt="image of lighthouse for post deletion on desktop">
-<img src="static/images/lighthouse_delpost_mobile.png" alt="image of lighthouse for post deletion on mobile">
-<img src="static/images/lighthouse_editpost_desk.png" alt="image of lighthouse for post editing on desktop">
-<img src="static/images/lighthouse_editpost_mobile.png" alt="image of lighthouse for post editing on mobile">
-<img src="static/images/lighthouse_profile_desk.png" alt="image of lighthouse for profile on desktop">
-<img src="static/images/lighthouse_profile_mobile.png" alt="image of lighthouse for profile on mobile">
-<img src="static/images/lighthouse_delprof_desk.png" alt="image of lighthouse for profile deletion on desktop">
-<img src="static/images/lighthouse_delprof_mobile.png" alt="image of lighthouse for profile deletion on mobile">
-<img src="static/images/lighthouse_editprof_desk.png" alt="image of lighthouse for profile editing on desktop">
-<img src="static/images/lighthouse_editprof_mobile.png" alt="image of lighthouse for profile editing on mobile">
-<img src="static/images/lighthouse_bookmarks_desk.png" alt="image of lighthouse for bookmarks on desktop">
-<img src="static/images/lighthouse_bookmarks_mobile.png" alt="image of lighthouse for bookmarks on mobile">
-<img src="static/images/lighthouse_bookmarks_desk.png" alt="image of lighthouse for bookmarks on desktop">
-<img src="static/images/lighthouse_signup_desk.png" alt="image of lighthouse for signup on desktop">
-<img src="static/images/lighthouse_signup_mobile.png" alt="image of lighthouse for signup on mobile">
-<img src="static/images/lighthouse_login_desk.png" alt="image of lighthouse for login on desktop">
-<img src="static/images/lighthouse_login_mobile.png" alt="image of lighthouse for login on mobile">
-<img src="static/images/lighthouse_logout_desk.png" alt="image of lighthouse for logout on desktop">
-<img src="static/images/lighthouse_logout_mobile.png" alt="image of lighthouse for logout on mobile">
-
-For the 404 page, full lighthouse testing was not supported so using napshot versions on this page only
-
-<img src="static/images/lighthouse_404_desk.png" alt="image of lighthouse for 404 on desktop">
-<img src="static/images/lighthouse_404_mobile.png" alt="image of lighthouse for 404 on mobile">
-
-# Automated Testing
-
-To run the automated testing I had created 3 new test pages, one each for views, models, and forms. This were tested on the default database and then had a coverage report run. The total coverage report came to 85%, and this will be accompanied by my full manual testing.
-
-<img src="static/images/coverage_report.png" alt="image of coverage report">
+<img src="src/assets/lighthouse_home1.png" alt="image of lighthouse for homepage on desktop">
+<img src="src/assets/lighthouse_home2.png" alt="image of lighthouse for homepage on mobile">
+<img src="src/assets/lighthouse_feed1.png" alt="image of lighthouse for feed on desktop">
+<img src="src/assets/lighthouse_feed2.png" alt="image of lighthouse for feed on mobile">
+<img src="src/assets/lighthouse_notification1.png" alt="image of lighthouse for notification on desktop">
+<img src="src/assets/lighthouse_notification2.png" alt="image of lighthouse for notification on mobile">
+<img src="src/assets/lighthouse_liked1.png" alt="image of lighthouse for liked on desktop">
+<img src="src/assets/lighthouse_liked2.png" alt="image of lighthouse for liked on mobile">
+<img src="src/assets/lighthouse_post1.png" alt="image of lighthouse for post on desktop">
+<img src="src/assets/lighthouse_post2.png" alt="image of lighthouse for post on mobile">
+<img src="src/assets/lighthouse_editpost1.png" alt="image of lighthouse for edit post on desktop">
+<img src="src/assets/lighthouse_editpost2.png" alt="image of lighthouse for edit post on mobile">
+<img src="src/assets/lighthouse_profile1.png" alt="image of lighthouse for profile on desktop">
+<img src="src/assets/lighthouse_profile2.png" alt="image of lighthouse for profile on mobile">
+<img src="src/assets/lighthouse_editprofile1.png" alt="image of lighthouse for edit profile on desktop">
+<img src="src/assets/lighthouse_editprofile2.png" alt="image of lighthouse for edit profile on mobile">
+<img src="src/assets/lighthouse_create1.png" alt="image of lighthouse for create post on desktop">
+<img src="src/assets/lighthouse_create2.png" alt="image of lighthouse for create post on mobile">
+<img src="src/assets/lighthouse_signun1.png" alt="image of lighthouse for sign up on desktop">
+<img src="src/assets/lighthouse_signun2.png" alt="image of lighthouse for sign up on mobile">
+<img src="src/assets/lighthouse_login1.png" alt="image of lighthouse for login on desktop">
+<img src="src/assets/lighthouse_login2.png" alt="image of lighthouse for login on mobile">
 
 # Full Manual Testing
 
@@ -407,29 +350,43 @@ All things that link to other pages, eg, posts or profile, have been tested that
         <td>pass</td>
     </tr>
     <tr>
-        <td>Pagination</td>
-        <td>When more than 6 posts, page will create a new page for additional content</td>
-        <td>Created more than 6 posts</td>
-        <td>Next button appeared with additional posts</td>
+        <td>Search Bar No results</td>
+        <td>Search bar will show a no results image if not matching anything</td>
+        <td>Typed random words into searchbar</td>
+        <td>No posts appear, image saying nothing found</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Infinite Scroll</td>
+        <td>When more than 10 posts, page will get longer to include more posts as reaching end</td>
+        <td>Created more than 10 posts</td>
+        <td>Side bar for scrolling got shorter as I scrolled down</td>
         <td>pass</td>
     </tr>
     <tr>
         <td>Nav bar changes when logged in</td>
         <td>When logged in, the nav bar options will change</td>
         <td>Log in and look at navbar</td>
-        <td>Options changed to profile and logout instead of login and signup</td>
+        <td>Options changed to feed, notifications, liked, and profile avatar</td>
         <td>pass</td>
     </tr>
     <tr>
-        <td>Social media links</td>
-        <td>All social media links on footer take you to new tab of the indicated social media</td>
-        <td>Click each link</td>
-        <td>Social media opened in seperate tabs</td>
+        <td>Like/Unlike from feed</td>
+        <td>Posts can be liked by logged in user without clicking into post</td>
+        <td>Like/Unlike a post</td>
+        <td>Like/Unlike icon changed</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Follow/Unfollow from popular profiles section</td>
+        <td>Profiles can be Followed/Unfollowed from popular profiles section</td>
+        <td>Follow/Unfollow someone from popular profiles section</td>
+        <td>Button changed to whatever the opposite was and stats changed on profile</td>
         <td>pass</td>
     </tr>
 </table>
 
-## Create Post Testing
+## Post Testing
 
 <table>
     <tr>
@@ -440,43 +397,50 @@ All things that link to other pages, eg, posts or profile, have been tested that
         <th>Pass/Fail</th>
     </tr>
     <tr>
-        <td>Title Limit</td>
-        <td>Titles must be below 25 Characters</td>
-        <td>Make a title with over 25 Characters and submit</td>
-        <td>Post is not created warning flagged no title over 25 characters</td>
+        <td>Can like/unlike post from the specific post page</td>
+        <td>Posts can be liked by logged in users when on specific post page</td>
+        <td>Hit like/unlike when on a specific post</td>
+        <td>Button changed to reflect new status</td>
         <td>pass</td>
     </tr>
     <tr>
-        <td>Content Styling</td>
-        <td>All smmernote styling can be used on content</td>
-        <td>Style contetn various ways, eg. Bold, Heders, Italic and submit</td>
-        <td>Content appeared exactly as shown in form</td>
+        <td>Logged in users can comment on a specific post</td>
+        <td>Can comment on a post when on its own page</td>
+        <td>Leave a comment and click post</td>
+        <td>Coment appears in comment section</td>
         <td>pass</td>
     </tr>
     <tr>
-        <td>Post images</td>
-        <td>User can upload any image they like and it will appear in the post and preview</td>
-        <td>Upload a photo in the upload photo section and submit</td>
-        <td>Photo shown on post and preview</td>
+        <td>Comments on posts can be edited</td>
+        <td>Can edit a comment if you are the user who left it</td>
+        <td>Click on 3 dots and hit edit, after edit hit post</td>
+        <td>Comment is updated</td>
         <td>pass</td>
     </tr>
     <tr>
-        <td>Default image</td>
-        <td>User can choose to not upload image and a default will appear</td>
-        <td>Don't upload a photo in the upload photo section and submit</td>
-        <td>Default photo shown on post and preview</td>
+        <td>Comments on posts can be deleted</td>
+        <td>Can delete a comment if you are the user who left it</td>
+        <td>Click on 3 dots and hit delete</td>
+        <td>Comment is deleted</td>
         <td>pass</td>
     </tr>
     <tr>
-        <td>Scuccessful post creation toast</td>
-        <td>A success message will appear after creating a post</td>
-        <td>Create a post</td>
-        <td>Green success message appears</td>
+        <td>Comments scroll infintely</td>
+        <td>Comments on a post will scroll infinitely if over 10 comments</td>
+        <td>Scroll on a post with 10+ comments</td>
+        <td>Side bar shrinks as going down page</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Video posts can play videos</td>
+        <td>Posts made with a video are able to play</td>
+        <td>Create a post with a video</td>
+        <td>Video plays with no issue</td>
         <td>pass</td>
     </tr>
 </table>
 
-## Comment Approval
+## Feed Testing
 
 <table>
     <tr>
@@ -487,29 +451,15 @@ All things that link to other pages, eg, posts or profile, have been tested that
         <th>Pass/Fail</th>
     </tr>
     <tr>
-        <td>Nothing to approve</td>
-        <td>When on this page and there are no comments to be approved, a message will shown letting you know</td>
-        <td>Click on approve comments section when nothing to approve</td>
-        <td>Message displaying</td>
-        <td>pass</td>
-    </tr>
-    <tr>
-        <td>Taken to post page when approved</td>
-        <td>When a comment is clicked to be approved you will be taken to that page and show it is approved</td>
-        <td>Click approve on a comment</td>
-        <td>Directed to that post and comment will now appear</td>
-        <td>pass</td>
-    </tr>
-    <tr>
-        <td>Taken to post page when declined</td>
-        <td>When a comment is clicked to be declines you will be taken to that page and show it is not approved</td>
-        <td>Click decline on a comment</td>
-        <td>Directed to that post and comment will not appear and be deleted from system</td>
+        <td>Feed should only show posts of people you follow</td>
+        <td>When looking at the feed you should only get activity from accounts you follow</td>
+        <td>Go to feed</td>
+        <td>Only followed users posts appear</td>
         <td>pass</td>
     </tr>
 </table>
 
-## Post view
+## Notification Page
 
 <table>
     <tr>
@@ -520,8 +470,8 @@ All things that link to other pages, eg, posts or profile, have been tested that
         <th>Pass/Fail</th>
     </tr>
     <tr>
-        <td>Can view authors profile</td>
-        <td>When you click authors name, you are taken to their profile</td>
+        <td>Can see notification in chronological order</td>
+        <td>When you click on notification, all your notification will appear in correct order</td>
         <td>Click authors name</td>
         <td>Directed to their profile</td>
         <td>pass</td>
@@ -882,7 +832,7 @@ All things that link to other pages, eg, posts or profile, have been tested that
 
 To deploy this project, I used Heroku, a cloud platform that allows you to easily host web applications. Follow these steps to access the deployed version:
 
-* Visit the deployed application: https://veg-life-e7290059d7ac.herokuapp.com/
+* Visit the deployed application: https://travelers-tail-fe-caecb05c1af1.herokuapp.com/
 * You can explore the live version of the project to see it in action.
 
 # Forking and Cloning
@@ -902,50 +852,38 @@ To work with the code locally on your machine, you can clone the repository. Her
 * Navigate to the directory where you want to store the project.
 * Run the following command to clone the repository:
 
-git clone https://github.com/Sean-OBrien95/Veg-Life.git
+git clone https://github.com/Sean-OBrien95/travelers-tails-fe.git
 
 # Credit
 
 ## Packages
 
-asgiref                3.7.2 - https://pypi.org/project/asgiref/
-cloudinary             1.36.0 - https://pypi.org/project/cloudinary/
-coverage               7.4.1 - https://pypi.org/project/coverage/
-dj-database-url        0.5.0 - https://pypi.org/project/dj-database-url/
-dj3-cloudinary-storage 0.0.6 - https://pypi.org/project/dj3-cloudinary-storage/
-Django                 3.2.23 - https://docs.djangoproject.com/en/5.0/topics/install/
-django-allauth         0.58.2 - https://pypi.org/project/django-allauth/
-django-crispy-forms    1.14.0 - https://pypi.org/project/django-crispy-forms/
-django-summernote      0.8.20.0 - https://pypi.org/project/django-summernote/
-gunicorn               21.2.0 - https://pypi.org/project/gunicorn/
-oauthlib               3.2.2 - https://pypi.org/project/oauthlib/
-pillow                 10.2.0 - https://pypi.org/project/pillow/
-psycopg2               2.9.9 - https://pypi.org/project/psycopg2/
-PyJWT                  2.8.0 - https://pypi.org/project/PyJWT/
-python3-openid         3.2.0 - https://pypi.org/project/python3-openid/
-pytz                   2023.3.post1 - https://pypi.org/project/pytz/
-requests-oauthlib      1.3.1 - https://pypi.org/project/requests-oauthlib/
-sqlparse               0.4.4 - https://pypi.org/project/sqlparse/ 
-
-Bootstrap              5.3.2 - https://getbootstrap.com/docs/5.3/getting-started/introduction/
+@testing-library/jest-dom@5.16.5
+@testing-library/react@11.2.7
+@testing-library/user-event@12.8.3
+axios@0.21.4
+bindings@1.5.0 extraneous
+bootstrap@4.6.0
+file-uri-to-path@1.0.0 extraneous
+jwt-decode@3.1.2
+msw@0.35.0
+nan@2.17.0 extraneous
+react-bootstrap@1.6.3
+react-dom@17.0.2
+react-infinite-scroll-component@6.1.0
+react-router-dom@5.3.4
+react-scripts@4.0.3
+react@17.0.2
+web-vitals@1.1.2
 
 ## Images
 
-- VegLife logo image: https://www.istockphoto.com/vector/abstract-green-leaf-logo-icon-vector-design-ecology-icon-set-eco-icon-gm1045368942-279747493
-- Veg stock photohome page: Photo by Rauf Allahverdiyev: <https://www.pexels.com/photo/tomatoes-1367242/>
-- Default veg photo credit: wfmynews2 <http://content.kens5.com/photo/2017/10/22/vegetables_1508727313637_11456014_ver1.0.jpg>
-- Default profile pic from researchgate: <https://www.researchgate.net/post/Why_is_RNA_contamination_effecting_my_PCR_product_size>
-- Images used for profile pictures and posts may have been taken from google images, but are not hard coded into the project.
+- Purple Plane for logo and favicon taken from FedEx: https://www.fedex.com/en-us/holiday/last-days-to-ship.html 
+- Purple sky image on signup tajen from https://www.pixel4k.com/purple-palm-tree-4k-55080.html 
+- Upload image taken from Vecteezy: https://www.vecteezy.com/vector-art/424804-upload-icon-vector-illustration 
+- No results image taken from iStock: https://www.istockphoto.com/de/kostenlose-fotos?utm_medium=cpc&utm_source=MICROSOFT&utm_campaign=DE_Torso_Photo_Free_DE&utm_content=Photo_Free_Phrase&utm_term=frei+bilder&program=default-generic&ds_rl=1261606&ds_rl=1265190&gclsrc=3p.ds&ds_rl=1261606&ds_rl=1265190&msclkid=bae41a614ad51b9803f27c780ce1acf2&ds_rl=1265190&gclid=bae41a614ad51b9803f27c780ce1acf2&gclsrc=3p.ds 
 
 ### I had learned some commands from the following websites
 
-- Learned allauth configuration here: https://docs.allauth.org/en/latest/account/configuration.html
-- How to add background image as a static image: https://stackoverflow.com/questions/39769469/the-way-to-use-background-image-in-css-files-with-django
-- Various Bootsrap commands: https://www.w3schools.com/bootstrap/
-
-
-Photo credit
-Purple Plane for logo and favicon taken from FedEx: https://www.fedex.com/en-us/holiday/last-days-to-ship.html 
-Purple sky image on signup tajen from https://www.pixel4k.com/purple-palm-tree-4k-55080.html 
-Upload image taken from Vecteezy: https://www.vecteezy.com/vector-art/424804-upload-icon-vector-illustration 
-No results image taken from iStock: https://www.istockphoto.com/de/kostenlose-fotos?utm_medium=cpc&utm_source=MICROSOFT&utm_campaign=DE_Torso_Photo_Free_DE&utm_content=Photo_Free_Phrase&utm_term=frei+bilder&program=default-generic&ds_rl=1261606&ds_rl=1265190&gclsrc=3p.ds&ds_rl=1261606&ds_rl=1265190&msclkid=bae41a614ad51b9803f27c780ce1acf2&ds_rl=1265190&gclid=bae41a614ad51b9803f27c780ce1acf2&gclsrc=3p.ds 
+- Took some inspiration for making notification: https://stackoverflow.com/questions/67586228/instant-real-time-notifications-in-react
+- Used a variety of React-Bootstrap commands found here: https://react-bootstrap-v4.netlify.app/components/dropdowns/

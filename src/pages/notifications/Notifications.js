@@ -23,8 +23,8 @@ const Notification = () => {
       setLoading(true);
       // Fetch notifications from the server
       const response = await axios.get(`notifications/?page=${page}`);
-      // Reverse the order of notifications and add to the existing list
-      const userNotifications = response.data.results.reverse(); 
+      // Add fetched notifications to the existing list
+      const userNotifications = response.data.results;
       setNotifications([...notifications, ...userNotifications]);
       // Update loading state and page number
       setLoading(false);
@@ -63,7 +63,6 @@ const Notification = () => {
       <Row className="h-100">
         <Col Col className="py-2 p-0 p-lg-2" lg={8}>
           <PopularProfiles mobile />
-          {/* Infinite scroll for notifications */}
           <InfiniteScroll
             dataLength={notifications.length}
             next={fetchNotifications} 
@@ -86,7 +85,6 @@ const Notification = () => {
               <Asset spinner />
             </div>
           )}
-          {/* Message for no notifications */}
           {!loading && notifications.length === 0 && (
             <div className={`${appStyles.Content} d-flex flex-column justify-content-center align-items-center`}>
               <Asset src={NoResultsImage} />
