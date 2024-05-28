@@ -104,92 +104,65 @@ Please see attached wireframes for the main pages of the project, being the home
 
 - The navigation bar and logo
 
-* Featured on every page and part of the base.html.
+* Featured on every page.
 * This was created to help the user flow of the website and allow the user to jump between each section at will without having to rely on back commands from the browser. The logo also acts as a home button if the user would like to use that.
-* When on a page, the nav bar will have an underline to show the user which specific page they are on. When hovering over a new page the colour will also change to the green to contrast.
-* DEpending on if user is logged in or out, the options will differ. Both having home as an option but login and sigup as option if your logged out, and profile and logout if you're logged in
+* When on a page, the nav bar will have a purple colour to show the user which page they have selected
+* Depending on if user is logged in or out, the options will differ. Both having home as an option but logged out users will have create account and sign in as options, where as logged in users will have feed, notification, liked, as well as their avatar which links to their profile page
 
-<img src="static/images/navbar_desktop.png" alt="Photo of just the navigation bar on desktop">
-<img src="static/images/navbar_mobile.png" alt="Photo of just the navigation bar on mobile">
+<img src="src/assets/navbar1.png" alt="Photo of just the logged out navigation bar on desktop">
+<img src="src/assets/navbar2.png" alt="Photo of just the logged in navigation bar on desktop">
+<img src="src/assets/navbar3.png" alt="Photo of just the logged in navigation bar on mobile">
 
-# Hero Image and text
+# Search Bar
 
-- Hero image and text
+- Travelers Tails Search bar
 
-* The hero image was designed to make the introduction the website instantly recognisable.
-* The image is fresh looking tomatoes paired with some green veg.
-* the image has an overlay of some text to further show the user what the subject of the site is.
+* This is a clear searchbar where user can do specific key word searches
 
-<img src="static/images/main_image.png" alt="Photo of just the landing image and overlay text">
-
-# Welcome, Search bar, and Post Creation / Comment Approval
-
-- VegLife introduction
-
-* This is an introductory piece of info with a simple welcome message
-* Underneath is a clear search bar with a magnify search button next to it so the user can search specific topics
-* Below this is 2 buttons which are only visible for super users, these are buttons for creating new posts and apporving user comments.
-
-<img src="static/images/searchbar.png" alt="Photo of welcome, search bar, and create post / approve comment buttons">
+<img src="src/assets/searchbar.png" alt="Photo of search bars">
 
 # Posts Section
 
 - The Posts Section
 
-* This section has two columns running down either side of the page, each column contains up to 3 posts.
-* In these you will see a featured image, a title, the author, an excerpt, as well as the number of likes and the time and date of posting.
+* This section has one continuous column set with infite scroll. This workd the same on home, feed, and liked.
+* In these you will see the user who posted, the location tag, the date it was posted, the image or video, and how many likes/comments each post has.
 * The posts display in a chronological order and when clicked will bring you to the content of the posts
-* This wil display as a single column on smaller screens
-* If there are more than 6 posts, there will be a next button a the end of the screen to take the user to the next selection of posts.
 
-<img src="static/images/posts_desktop.png" alt="Photo of posts on home page using desktop">
-<img src="static/images/posts_mobile.png" alt="Photo of posts on home page using mobile">
-
-# Footer
-
-- Footer section
-
-* The footer section will be appearing on all the pages. This has been designed with a minimal approach, using links that will take you to social media pages. I have not created social media pages for each of these so the link will guide to the home page of each website.
-
-<img src="static/images/footer.png" alt="Photo of footer section">
+<img src="src/assets/feed.png" alt="Photo of posts on home page using desktop">
 
 # Post Details
 
 - The contents of each post
 
-* When going into a post you will see the image on the right and the title on the left
-* On mobile the image will not appear
-* Beneath you will see the content of the post
-* Lastly is the buttons and like / comment counter. you will see 3 buttons usually unless you created the post, then there is 5
-* Like, comment counter, bookmark button, edit, and delete
-* These display horizontal on desktop and vertical on mobile
+* When going into a post you will see a lot of the same imagery that you will see when viewing them on the feed.
+* This includes user who posted, date posted, location, and the content itself.
+* Beneath you will see the likes and comments
+* You will be able to see all the comments which also scroll infinitely.
+- If you are the creator of the post, you will also see 3 dots at the top right corner, this will give you the option to edit or permanently delete your post.
 
-<img src="static/images/postdetail1_desktop.png" alt="Image of top of post detail page on dektop">
-<img src="static/images/postdetail2_desktop.png" alt="Image of bottom of post detail page on dektop">
-<img src="static/images/postdetail2_mobile.png" alt="Image of top of post detail page on mobile">
-<img src="static/images/postdetail1_mobile.png" alt="Image of bottom of post detail page on mobile">
+<img src="src/assets/post1.png" alt="Image of top section of post detail page">
+<img src="src/assets/post2.png" alt="Image of bottom section of post detail page">
 
-# Comment Section
+# Popular profiles section
 
-- Comment section displayed on every post
+- The popular profiles section dispalyed on most pages
 
-* The comment section displays comments on the left and space for user to comment on the right.
-* Comments will have a link to the user who posted thems profile, a like button, and time and date of posting
-* When liked, the colour will change and the counter will increase.
-* If it is a comment you have posted, there will also be a delete button
-* This is the only delete button that will not ask for confirmation, my reason for this is comments are much shorter and easier to mskr another one, so did not want to add another confirmation page
-* When a user comments it must be approved by a super user, this is to stop spam or inappropriate messages as vegan website are often targets of hate.
+* popular profiles section will dispay in a column on the right hand side when on a large screen, and in a small window on top of the page on small screens
+* This section will contain the most followed profiles profile pictures and usernames
+* On a large screen, the user will be able to follow/unfollow with one click
+* On a small screen, this button will be removed, but you will still be able to click on the profile to be brough to that users page.
 
-<img src="static/images/comment_desktop.png" alt="Image of comment section on desktop">
-<img src="static/images/comment_mobile.png" alt="Image of comment section on mobile">
+<img src="src/assets/popprofiles_desk.png" alt="Image of popular profiles section section on desktop">
+<img src="src/assets/popprofiles_mobile.png" alt="Image of popular profiles section section on mobile">
 
 # Create Post form
 
 - Form for post creation
 
-- A simple form using summernote for the content.
-- This has a title, content, image, and excerpt section
-- summernote was used here so the poster can make text bold as well as other stylings
+- A form that has 4 mandatory fields.
+- The user will have to enter the title and content.
+- For the location, they must select a country. A dropdown will appear with all countries as well as a bar for the user to type in a country so they do not have to scroll looking
 
 <img src="static/images/create_postdesk.png" alt="Photo of create post form on desktop">
 <img src="static/images/create_postmobile.png" alt="Photo of create post form on mobile">
