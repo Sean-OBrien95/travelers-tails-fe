@@ -783,23 +783,23 @@ git clone https://github.com/Sean-OBrien95/travelers-tails-fe.git
 
 ## Packages
 
-- @testing-library/jest-dom@5.16.5
-- @testing-library/react@11.2.7
-- @testing-library/user-event@12.8.3
-- axios@0.21.4
-- bindings@1.5.0 extraneous
-- bootstrap@4.6.0
-- file-uri-to-path@1.0.0 extraneous
-- jwt-decode@3.1.2
-- msw@0.35.0
-- nan@2.17.0 extraneous
-- react-bootstrap@1.6.3
-- react-dom@17.0.2
-- react-infinite-scroll-component@6.1.0
-- react-router-dom@5.3.4
-- react-scripts@4.0.3
-- react@17.0.2
-- web-vitals@1.1.2
+- @testing-library/jest-dom         5.16.5
+- @testing-library/react            11.2.7
+- @testing-library/user-event       12.8.3
+- axios                             0.21.4
+- bindings                          1.5.0 extraneous
+- bootstrap                         4.6.0
+- file-uri-to-path                  1.0.0 extraneous
+- jwt-decode                        3.1.2
+- msw                               0.35.0
+- nan                               2.17.0 extraneous
+- react-bootstrap                   1.6.3
+- react-dom                         17.0.2
+- react-infinite-scroll-component   6.1.0
+- react-router-dom                  5.3.4
+- react-scripts                     4.0.3
+- react                             17.0.2
+- web-vitals                        1.1.2
 
 ## Images
 
