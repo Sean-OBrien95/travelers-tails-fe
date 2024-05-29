@@ -103,7 +103,7 @@ const Post = (props) => {
       <div>
         {/* Rendering either video or image */}
         {video ? (
-          <video width="750" height="500" controls>
+          <video controls>
             <source src={video} />
           </video>
         ) : (

@@ -92,12 +92,23 @@ Feedback will also be given to users whenever they interact with the application
 
 Please see attached wireframes for the main pages of the project, being the home/feed/liked page, a post detail page, the profiles page, the notifications page, login/registration page, and create post page. These 6 pages are the main ones pages of the project. All have a very similar style for both large and small screens, with the main difference on small screens being the location of the suggested profiles, so I will only be showing the mobile for the home wireframes.
 
+* Home
 <img src="src/assets/wireframe_home_desk.png" alt="Wireframe of home page on desktop">
 <img src="src/assets/wireframe_home_mobile.png" alt="Wireframe of home page on mobile">
+
+* Post
 <img src="src/assets/wireframe_post_desktop.png" alt="Wireframe of post page on desktop">
+
+* Profile
 <img src="src/assets/wireframe_profile.png" alt="Wireframe of profile page on desktop">
+
+* Notification
 <img src="src/assets/wireframe_notification.png" alt="Wireframe of notification page on desktop">
+
+* Login
 <img src="src/assets/wireframe_login.png" alt="Wireframe of login page on desktop">
+
+* Create post
 <img src="src/assets/wireframe_createpost.png" alt="Wireframe of create post page on desktop">
 
 # Navigation Bar
@@ -194,17 +205,6 @@ Please see attached wireframes for the main pages of the project, being the home
 <img src="src/assets/profile3.png" alt="Image of another users profile page on desktop">
 <img src="src/assets/profile4.png" alt="Image of another users profile page on mobile">
 
-# Profile
-
-- The profile section can be accessed through the navbar for logged in users.
-- It will have your profile picture (or a default image) in a circle on the top left, followed by your username
-- Below this will be your basic info, or which ever users page your ons basic info
-- This is info such as how long your vegan, a bio, interested, and favourite animal.
-- If this is your page you will also see an edit, bookmark, and delete button.
-
-<img src="static/images/profile_desk.png" alt="Image of profile from desktop view">
-<img src="static/images/profile_mobile.png" alt="Image of profile from mobile view">
-
 # Login Page
 
 - This is the login page for users who already have an account.
@@ -284,8 +284,8 @@ Unresolved bugs:
 <img src="src/assets/lighthouse_editprofile2.png" alt="image of lighthouse for edit profile on mobile">
 <img src="src/assets/lighthouse_create1.png" alt="image of lighthouse for create post on desktop">
 <img src="src/assets/lighthouse_create2.png" alt="image of lighthouse for create post on mobile">
-<img src="src/assets/lighthouse_signun1.png" alt="image of lighthouse for sign up on desktop">
-<img src="src/assets/lighthouse_signun2.png" alt="image of lighthouse for sign up on mobile">
+<img src="src/assets/lighthouse_signup1.png" alt="image of lighthouse for sign up on desktop">
+<img src="src/assets/lighthouse_signup2.png" alt="image of lighthouse for sign up on mobile">
 <img src="src/assets/lighthouse_login1.png" alt="image of lighthouse for login on desktop">
 <img src="src/assets/lighthouse_login2.png" alt="image of lighthouse for login on mobile">
 
@@ -750,7 +750,12 @@ All things that link to other pages, eg, posts or profile, have been tested that
 
 ## Deployment
 
-To deploy this project, I used Heroku, a cloud platform that allows you to easily host web applications. Follow these steps to access the deployed version:
+* To deploy this project, I used Heroku, a cloud platform that allows you to easily host web applications.
+* I navigated to Heroku and made sure that my app was hooked up to my API.
+* Once this was done, I made sure that the config vars were set up correctly on the backend.
+* After this, I naviagted to the deploy page, and hit manual deploy.
+
+Follow these steps to access the deployed version:
 
 * Visit the deployed application: https://travelers-tail-fe-caecb05c1af1.herokuapp.com/
 * You can explore the live version of the project to see it in action.
@@ -778,23 +783,23 @@ git clone https://github.com/Sean-OBrien95/travelers-tails-fe.git
 
 ## Packages
 
-@testing-library/jest-dom@5.16.5
-@testing-library/react@11.2.7
-@testing-library/user-event@12.8.3
-axios@0.21.4
-bindings@1.5.0 extraneous
-bootstrap@4.6.0
-file-uri-to-path@1.0.0 extraneous
-jwt-decode@3.1.2
-msw@0.35.0
-nan@2.17.0 extraneous
-react-bootstrap@1.6.3
-react-dom@17.0.2
-react-infinite-scroll-component@6.1.0
-react-router-dom@5.3.4
-react-scripts@4.0.3
-react@17.0.2
-web-vitals@1.1.2
+- @testing-library/jest-dom@5.16.5
+- @testing-library/react@11.2.7
+- @testing-library/user-event@12.8.3
+- axios@0.21.4
+- bindings@1.5.0 extraneous
+- bootstrap@4.6.0
+- file-uri-to-path@1.0.0 extraneous
+- jwt-decode@3.1.2
+- msw@0.35.0
+- nan@2.17.0 extraneous
+- react-bootstrap@1.6.3
+- react-dom@17.0.2
+- react-infinite-scroll-component@6.1.0
+- react-router-dom@5.3.4
+- react-scripts@4.0.3
+- react@17.0.2
+- web-vitals@1.1.2
 
 ## Images
 
